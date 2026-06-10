@@ -27,7 +27,7 @@
   --body:'Space Grotesk',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{background:var(--void);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.65;overflow-x:hidden}
+body{background:var(--void);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;overflow-x:hidden}
 ::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:var(--s4)}
 a{color:var(--blue);text-decoration:none}
@@ -35,7 +35,7 @@ a:hover{text-decoration:underline}
 
 /* ═══ NAV ═══ */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,8,.97);border-bottom:1px solid var(--accent)}
-.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:10px}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:10px}
 .nav-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 3s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes slideR{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
@@ -57,7 +57,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .block-alt{background:var(--s2)!important}
 .block-accent{border-top:2px solid var(--accent)!important}
 .block-title{font-family:var(--serif);font-size:clamp(20px,2.5vw,30px);font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:20px}
-.block-lead{font-size:14px;color:var(--dim);max-width:600px;line-height:1.75;margin-bottom:24px}
+.block-lead{font-size:16px;color:var(--dim);max-width:600px;line-height:1.75;margin-bottom:24px}
 
 /* ═══ SEC HEADER ═══ */
 .sec-header{padding:40px 48px 32px;border-bottom:2px solid var(--border);background:var(--void)}
@@ -80,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .wni:hover::before{transform:scaleY(1)}
 .wni-num{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.15em;margin-bottom:8px}
 .wni-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}
-.wni-desc{font-size:13px;color:var(--dim);line-height:1.6}
+.wni-desc{font-size:15px;color:var(--dim);line-height:1.6}
 .wni-arrow{font-size:18px;color:var(--accent);margin-top:12px;display:block;transition:transform .2s}
 .wni:hover .wni-arrow{transform:translateX(4px)}
 
@@ -104,9 +104,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .tl-connector{width:1px;height:36px;background:var(--border);flex-shrink:0}
 .tl-card{background:var(--s1);padding:12px 14px;width:172px;border:1px solid var(--border);transition:all .2s}
 .tl-item:hover .tl-card{border-color:var(--accent);background:var(--s2)}
-.tl-year-label{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:4px}
-.tl-card-title{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:4px}
-.tl-card-short{font-size:11px;color:var(--dim);line-height:1.5;display:none;margin-bottom:6px}
+.tl-year-label{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:4px}
+.tl-card-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:4px}
+.tl-card-short{font-size:14px;color:var(--dim);line-height:1.5;display:none;margin-bottom:6px}
 .tl-card-link{display:none;font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:.06em}
 .tl-item.open .tl-card-short,.tl-item.open .tl-card-link{display:block}
 .tl-cat-tag{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:1px 5px;border:1px solid;margin-bottom:4px;display:inline-block}
@@ -118,7 +118,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .fc:hover{background:rgba(255,255,255,0.03)}
 .fc-tag{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 7px;border:1px solid;display:inline-block;margin-bottom:10px}
 .fc-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-.01em}
-.fc-text{font-size:13px;color:var(--dim);line-height:1.7}
+.fc-text{font-size:15px;color:var(--dim);line-height:1.7}
 .fc-text strong{color:var(--text);font-weight:600}
 .fc.span2{grid-column:span 2}
 .fc.full{grid-column:1/-1}
@@ -132,7 +132,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .vs-side:hover{background:var(--s2)}
 .vs-tag{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 7px;border:1px solid;display:inline-block;margin-bottom:10px}
 .vs-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:12px}
-.vs-text{font-size:13px;color:var(--dim);line-height:1.7}
+.vs-text{font-size:15px;color:var(--dim);line-height:1.7}
 .vs-text li{list-style:none;padding-left:12px;margin-bottom:4px}
 .vs-text li::before{content:'→ ';color:var(--accent)}
 
@@ -145,7 +145,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .agi-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 8px;border:1px solid;display:inline-block;width:fit-content}
 .agi-abbr{font-family:var(--serif);font-size:48px;font-weight:900;letter-spacing:-.02em;line-height:1}
 .agi-name{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-.agi-text{font-size:13px;color:var(--dim);line-height:1.7}
+.agi-text{font-size:15px;color:var(--dim);line-height:1.7}
 .agi-text strong{color:var(--text)}
 .agi-status{font-family:var(--mono);font-size:9px;padding:3px 8px;border:1px solid;display:inline-block;margin-top:auto}
 
@@ -154,7 +154,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .flow-wrap{overflow-x:auto;padding-bottom:8px}
 .flow-track{display:flex;align-items:flex-start;gap:0;min-width:max-content}
 .flow-step{display:flex;flex-direction:column;gap:6px;width:140px;flex-shrink:0;position:relative}
-.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--dim);font-size:14px;padding-top:30px}
+.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--dim);font-size:16px;padding-top:30px}
 .flow-box{padding:8px 10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
 .flow-box.input{background:rgba(232,98,42,0.15);border:1px solid rgba(232,98,42,0.4);color:var(--accent)}
 .flow-box.process{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--amber)}
@@ -164,8 +164,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .flow-box.sampler{background:rgba(167,139,250,0.15);border:1px dashed rgba(167,139,250,0.4);color:var(--purple)}
 .flow-type{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
 .flow-name{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase}
-.flow-desc{font-size:11px;color:var(--dim);line-height:1.5}
-.flow-note{font-size:11px;color:var(--dim);line-height:1.5;background:var(--s3);padding:8px 10px;border-left:2px solid var(--accent)}
+.flow-desc{font-size:14px;color:var(--dim);line-height:1.5}
+.flow-note{font-size:14px;color:var(--dim);line-height:1.5;background:var(--s3);padding:8px 10px;border-left:2px solid var(--accent)}
 .flow-checkpoint{font-size:10px;color:var(--dim);background:var(--s4);padding:8px 12px;border:1px solid var(--border);margin-top:12px;line-height:1.5}
 .flow-checkpoint strong{color:var(--amber)}
 
@@ -175,8 +175,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .model-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)}
 .model-maker{font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
 .model-body{background:var(--s1);padding:16px 18px}
-.model-body p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:6px}
-.model-alert{font-size:12px;color:var(--red)}
+.model-body p{font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:6px}
+.model-alert{font-size:14px;color:var(--red)}
 
 /* ═══ HERRAMIENTAS ═══ */
 .filter-bar{display:flex;flex-wrap:wrap;gap:0;background:var(--s1);border-bottom:1px solid var(--border)}
@@ -199,7 +199,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .uc-io{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:20px}
 .io-pill{display:flex;align-items:baseline;gap:8px}
 .io-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em}
-.io-val{font-size:13px;color:var(--dim)}
+.io-val{font-size:15px;color:var(--dim)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--border);margin-bottom:36px}
 .card{background:var(--s1);padding:20px 22px;transition:background .15s;position:relative}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
@@ -213,8 +213,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .card-price{font-size:9px;padding:2px 6px;border:1px solid var(--border);color:var(--dim);font-family:var(--mono)}
 .card-mods{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:8px}
 .card-mod{font-size:9px;padding:2px 6px;border:1px solid;border-radius:2px;font-family:var(--mono)}
-.card-desc{font-size:13px;color:var(--dim);line-height:1.65}
-.card-note{font-size:11px;color:var(--faint);padding:5px 8px;background:rgba(232,98,42,.05);border-left:2px solid var(--accent);margin-top:7px;line-height:1.5}
+.card-desc{font-size:15px;color:var(--dim);line-height:1.65}
+.card-note{font-size:14px;color:var(--faint);padding:5px 8px;background:rgba(232,98,42,.05);border-left:2px solid var(--accent);margin-top:7px;line-height:1.5}
 .card-link{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--blue);text-decoration:none;text-transform:uppercase;margin-top:9px}
 
 /* Plataformas */
@@ -226,9 +226,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .plat-mode.m-open::before{background:var(--green)}
 .plat-mode.m-int::before{background:var(--accent)}
 .plat-mode-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
-.plat-mode-desc{font-size:13px;color:var(--dim);line-height:1.6}
+.plat-mode-desc{font-size:15px;color:var(--dim);line-height:1.6}
 
-.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:24px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:24px}
 .tbl th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--border);background:var(--s2);color:var(--dim);text-align:left}
 .tbl th.h-priv{color:var(--blue)}
 .tbl th.h-open{color:var(--green)}
@@ -240,8 +240,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .req-item{background:var(--s1);padding:16px 18px}
 .req-item:hover{background:var(--s2)}
 .req-label{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
-.req-val{font-size:14px;color:var(--text);font-weight:600;margin-bottom:3px}
-.req-note{font-size:11px;color:var(--dim)}
+.req-val{font-size:16px;color:var(--text);font-weight:600;margin-bottom:3px}
+.req-note{font-size:14px;color:var(--dim)}
 
 /* MINI GLOSARIO */
 .mini-glos{padding:40px 48px 56px;background:#1a0f2e}
@@ -251,7 +251,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .mgi{background:rgba(255,255,255,0.04);padding:18px 20px;transition:background .15s;cursor:pointer}
 .mgi:hover{background:rgba(255,255,255,0.08)}
 .mgi-term{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
-.mgi-short{font-size:12px;color:var(--dim);line-height:1.6}
+.mgi-short{font-size:14px;color:var(--dim);line-height:1.6}
 
 
 /* FLOW DIAGRAM */
@@ -259,7 +259,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .flow-wrap{overflow-x:auto;padding-bottom:8px}
 .flow-track{display:flex;align-items:flex-start;gap:0;min-width:max-content}
 .flow-step{display:flex;flex-direction:column;gap:6px;width:140px;flex-shrink:0}
-.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--faint);font-size:14px;padding-top:30px}
+.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--faint);font-size:16px;padding-top:30px}
 .flow-box{padding:8px 10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
 .flow-box.input{background:rgba(232,98,42,.15);border:1px solid rgba(232,98,42,.4);color:var(--accent)}
 .flow-box.process{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--amber)}
@@ -269,7 +269,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .flow-box.sampler{background:rgba(167,139,250,.15);border:1px dashed rgba(167,139,250,.4);color:var(--purple)}
 .flow-type{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
 .flow-name{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase}
-.flow-desc{font-size:11px;color:var(--dim);line-height:1.5}
+.flow-desc{font-size:14px;color:var(--dim);line-height:1.5}
 .flow-checkpoint{font-size:10px;color:var(--dim);background:var(--s4);padding:8px 12px;border:1px solid var(--border);margin-top:12px;line-height:1.5}
 .flow-checkpoint strong{color:var(--amber)}
 
@@ -287,7 +287,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
   .nav-toggle{display:block}
   .nav-links{display:none;position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;background:var(--s1);border-bottom:2px solid var(--accent);z-index:199}
   .nav-links.open{display:flex}
-  .nav-btn{padding:16px 24px;border:none;border-bottom:1px solid var(--border);text-align:left;font-size:13px;width:100%}
+  .nav-btn{padding:16px 24px;border:none;border-bottom:1px solid var(--border);text-align:left;font-size:15px;width:100%}
   .w-hero{padding:48px 24px 36px}
   .sec-header,.block,.fund-section-pad{padding-left:24px;padding-right:24px}
   .block{padding-left:24px;padding-right:24px}
@@ -360,17 +360,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
   <div style="padding:32px 48px 48px;background:var(--s2);border-top:1px solid var(--border)">
     <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Referentes de la historia</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border)">
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Charles Babbage</div><a href="https://en.wikipedia.org/wiki/Charles_Babbage" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1791–1871</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Matemático e inventor británico. Diseñó la Máquina Diferencial y la Analítica. Su trabajo fue reconocido plenamente recién en el siglo XX.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ada Lovelace</div><a href="https://en.wikipedia.org/wiki/Ada_Lovelace" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1815–1852</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Matemática británica. Considerada la primera programadora de la historia. Hija del poeta Lord Byron. Murió a los 36 años.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Alan Turing</div><a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1912–1954</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la informática teórica. Descifró los códigos Enigma. Fue perseguido por su homosexualidad. Indulto póstumo en 2013.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Claude Shannon</div><a href="https://en.wikipedia.org/wiki/Claude_Shannon" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1916–2001</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la teoría de la información. Demostró que la lógica booleana podía implementarse con circuitos eléctricos.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Norbert Wiener</div><a href="https://en.wikipedia.org/wiki/Norbert_Wiener" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1894–1964</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la cibernética. Matemático del MIT. Uno de los primeros en advertir sobre los riesgos sociales de la automatización.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Joseph Weizenbaum</div><a href="https://en.wikipedia.org/wiki/Joseph_Weizenbaum" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1923–2008</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Creador de ELIZA. Autor de "Computer Power and Human Reason" (1976). Crítico filosófico del campo que ayudó a construir.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Yann LeCun</div><a href="https://en.wikipedia.org/wiki/Yann_LeCun" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1960</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Científico francés. Director de IA en Meta. Premio Turing 2018. Creador de las CNNs. Pionero del Deep Learning.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Fei-Fei Li</div><a href="https://en.wikipedia.org/wiki/Fei-Fei_Li" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1976</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Directora del AI Human-Centered Lab en Stanford. Creadora de ImageNet. Una de las voces más influyentes en IA centrada en valores humanos.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Geoffrey Hinton</div><a href="https://en.wikipedia.org/wiki/Geoffrey_Hinton" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1947</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padrino del Deep Learning. Premio Turing 2018. Renunció a Google en 2023 para hablar libremente sobre los riesgos de la IA.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ian Goodfellow</div><a href="https://en.wikipedia.org/wiki/Ian_Goodfellow" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1985</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Inventor de las GANs. Uno de los papers más citados de la última década. Trabajó en Google Brain, OpenAI y Apple.</div></div>
-      <div style="background:var(--s1);padding:16px 18px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px">Google | OpenAI | Stability AI | DeepMind</div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">2000s–hoy</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Las organizaciones que concentran la mayor parte de la investigación y el desarrollo de IA a nivel global.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Charles Babbage</div><a href="https://en.wikipedia.org/wiki/Charles_Babbage" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1791–1871</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Matemático e inventor británico. Diseñó la Máquina Diferencial y la Analítica. Su trabajo fue reconocido plenamente recién en el siglo XX.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ada Lovelace</div><a href="https://en.wikipedia.org/wiki/Ada_Lovelace" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1815–1852</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Matemática británica. Considerada la primera programadora de la historia. Hija del poeta Lord Byron. Murió a los 36 años.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Alan Turing</div><a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1912–1954</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Padre de la informática teórica. Descifró los códigos Enigma. Fue perseguido por su homosexualidad. Indulto póstumo en 2013.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Claude Shannon</div><a href="https://en.wikipedia.org/wiki/Claude_Shannon" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1916–2001</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Padre de la teoría de la información. Demostró que la lógica booleana podía implementarse con circuitos eléctricos.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Norbert Wiener</div><a href="https://en.wikipedia.org/wiki/Norbert_Wiener" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1894–1964</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Padre de la cibernética. Matemático del MIT. Uno de los primeros en advertir sobre los riesgos sociales de la automatización.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Joseph Weizenbaum</div><a href="https://en.wikipedia.org/wiki/Joseph_Weizenbaum" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1923–2008</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Creador de ELIZA. Autor de "Computer Power and Human Reason" (1976). Crítico filosófico del campo que ayudó a construir.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Yann LeCun</div><a href="https://en.wikipedia.org/wiki/Yann_LeCun" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1960</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Científico francés. Director de IA en Meta. Premio Turing 2018. Creador de las CNNs. Pionero del Deep Learning.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Fei-Fei Li</div><a href="https://en.wikipedia.org/wiki/Fei-Fei_Li" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1976</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Directora del AI Human-Centered Lab en Stanford. Creadora de ImageNet. Una de las voces más influyentes en IA centrada en valores humanos.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Geoffrey Hinton</div><a href="https://en.wikipedia.org/wiki/Geoffrey_Hinton" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1947</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Padrino del Deep Learning. Premio Turing 2018. Renunció a Google en 2023 para hablar libremente sobre los riesgos de la IA.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ian Goodfellow</div><a href="https://en.wikipedia.org/wiki/Ian_Goodfellow" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1985</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Inventor de las GANs. Uno de los papers más citados de la última década. Trabajó en Google Brain, OpenAI y Apple.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px">Google | OpenAI | Stability AI | DeepMind</div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">2000s–hoy</div><div style="font-size:14px;color:var(--dim);line-height:1.6">Las organizaciones que concentran la mayor parte de la investigación y el desarrollo de IA a nivel global.</div></div>
     </div>
   </div>
   <div class="mini-glos">
@@ -479,10 +479,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     <div style="background:var(--s2);padding:24px 28px;margin-bottom:24px;border-left:2px solid var(--blue)">
       <div style="background:var(--s1);padding:24px 26px">
         <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px">Machine Learning</div>
-        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px"><strong style="color:var(--text)">Machine Learning</strong> es una rama de la inteligencia artificial que se ocupa de que las máquinas aprendan a partir de datos.</p>
-        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px">Una rama más avanzada es el <strong style="color:var(--text)">deep learning</strong>, que utiliza redes neuronales con muchas capas, capaces de aprender patrones complejos de forma jerárquica: formas visuales, estilos o significados del lenguaje.</p>
-        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:8px">Muchas áreas usan técnicas de ML o DL para funcionar:</p>
-        <ul style="font-size:13px;color:var(--dim);line-height:1.7;list-style:none;padding-left:0">
+        <p style="font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:10px"><strong style="color:var(--text)">Machine Learning</strong> es una rama de la inteligencia artificial que se ocupa de que las máquinas aprendan a partir de datos.</p>
+        <p style="font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:10px">Una rama más avanzada es el <strong style="color:var(--text)">deep learning</strong>, que utiliza redes neuronales con muchas capas, capaces de aprender patrones complejos de forma jerárquica: formas visuales, estilos o significados del lenguaje.</p>
+        <p style="font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:8px">Muchas áreas usan técnicas de ML o DL para funcionar:</p>
+        <ul style="font-size:15px;color:var(--dim);line-height:1.7;list-style:none;padding-left:0">
           <li style="padding-left:16px;margin-bottom:4px">→ Cuando una IA "ve": <strong style="color:var(--text)">Computer Vision + Deep Learning</strong></li>
           <li style="padding-left:16px;margin-bottom:4px">→ Cuando una IA "traduce": <strong style="color:var(--text)">NLP + Machine Learning</strong></li>
           <li style="padding-left:16px">→ Cuando genera imágenes desde texto: <strong style="color:var(--text)">Visión + Lenguaje + DL</strong></li>
@@ -495,19 +495,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
         <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(59,130,246,0.2);line-height:1;margin-bottom:8px">01</div>
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(59,130,246,.35);display:inline-block">Nivel 1</div>
         <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">Machine Learning</div>
-        <div style="font-size:13px;color:var(--dim);line-height:1.7">Las máquinas <strong style="color:var(--text)">aprenden de datos</strong> sin reglas explícitas. Le mostrás ejemplos y el sistema aprende los patrones.<br><br>Supervisado, no supervisado y por refuerzo son los tres paradigmas.</div>
+        <div style="font-size:15px;color:var(--dim);line-height:1.7">Las máquinas <strong style="color:var(--text)">aprenden de datos</strong> sin reglas explícitas. Le mostrás ejemplos y el sistema aprende los patrones.<br><br>Supervisado, no supervisado y por refuerzo son los tres paradigmas.</div>
       </div>
       <div style="padding:28px 24px;background:var(--s2)">
         <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(167,139,250,0.2);line-height:1;margin-bottom:8px">02</div>
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(167,139,250,.35);display:inline-block">Nivel 2 | subcampo del ML</div>
         <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">Deep Learning</div>
-        <div style="font-size:13px;color:var(--dim);line-height:1.7">Redes neuronales con <strong style="color:var(--text)">muchas capas jerárquicas</strong>. Bordes → formas → conceptos. Base de todos los modelos actuales.</div>
+        <div style="font-size:15px;color:var(--dim);line-height:1.7">Redes neuronales con <strong style="color:var(--text)">muchas capas jerárquicas</strong>. Bordes → formas → conceptos. Base de todos los modelos actuales.</div>
       </div>
       <div style="padding:28px 24px;background:var(--s3)">
         <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(232,98,42,0.2);line-height:1;margin-bottom:8px">03</div>
         <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(232,98,42,.35);display:inline-block">Nivel 3 | aplicación del DL</div>
         <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">IA Generativa</div>
-        <div style="font-size:13px;color:var(--dim);line-height:1.7">Sistemas que <strong style="color:var(--text)">crean contenido nuevo</strong>: texto, imágenes, audio, video. Transformers para lenguaje, difusión para imagen.</div>
+        <div style="font-size:15px;color:var(--dim);line-height:1.7">Sistemas que <strong style="color:var(--text)">crean contenido nuevo</strong>: texto, imágenes, audio, video. Transformers para lenguaje, difusión para imagen.</div>
       </div>
     </div>
   </div>
@@ -520,7 +520,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
       <div style="background:var(--s1);padding:24px 26px;border-top:3px solid rgba(167,139,250,0.5)">
         <span style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);padding:2px 7px;border:1px solid rgba(167,139,250,.35);background:rgba(167,139,250,.08);display:inline-block;margin-bottom:10px">Enfoque histórico</span>
         <div style="font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px">IA Simbólica</div>
-        <div style="font-size:13px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">reglas lógicas escritas por humanos</strong>.<br><br>
+        <div style="font-size:15px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">reglas lógicas escritas por humanos</strong>.<br><br>
           → Sistemas expertos de los 80<br>
           → Si X entonces Y<br>
           → Transparente pero frágil<br>
@@ -530,7 +530,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
       <div style="background:var(--s1);padding:24px 26px;border-top:3px solid rgba(59,130,246,0.5)">
         <span style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);padding:2px 7px;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);display:inline-block;margin-bottom:10px">Enfoque dominante hoy</span>
         <div style="font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px">IA Conexionista</div>
-        <div style="font-size:13px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">patrones aprendidos de datos</strong>.<br><br>
+        <div style="font-size:15px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">patrones aprendidos de datos</strong>.<br><br>
           → Redes neuronales artificiales<br>
           → Aprende de millones de ejemplos<br>
           → Opaca pero flexible<br>
@@ -574,15 +574,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     <div style="background:var(--s1);padding:24px 28px;margin-bottom:0;border-left:2px solid var(--purple)">
       <div style="background:var(--s2);padding:24px 26px">
         <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px">Redes Neuronales Artificiales</div>
-        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:8px">Una <strong style="color:var(--text)">red neuronal artificial</strong> enseña a las computadoras a procesar datos <em>inspirada en la forma en que lo hace el cerebro humano</em>. Igual que las neuronas, son capaces de recibir y enviar señales.</p>
-        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:8px">Un grupo interconectado de <strong style="color:var(--text)">nodos</strong>. Cada nodo representa una <strong style="color:var(--text)">neurona</strong> y cada flecha una <strong style="color:var(--text)">conexión</strong>. El <strong style="color:var(--text)">comportamiento</strong> se controla a través de los <strong style="color:var(--text)">parámetros</strong>.</p>
-        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:6px"><strong style="color:var(--text)">3 partes:</strong></p>
-        <ul style="font-size:13px;color:var(--dim);list-style:none;padding-left:0;margin-bottom:8px">
+        <p style="font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:8px">Una <strong style="color:var(--text)">red neuronal artificial</strong> enseña a las computadoras a procesar datos <em>inspirada en la forma en que lo hace el cerebro humano</em>. Igual que las neuronas, son capaces de recibir y enviar señales.</p>
+        <p style="font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:8px">Un grupo interconectado de <strong style="color:var(--text)">nodos</strong>. Cada nodo representa una <strong style="color:var(--text)">neurona</strong> y cada flecha una <strong style="color:var(--text)">conexión</strong>. El <strong style="color:var(--text)">comportamiento</strong> se controla a través de los <strong style="color:var(--text)">parámetros</strong>.</p>
+        <p style="font-size:15px;color:var(--dim);line-height:1.7;margin-bottom:6px"><strong style="color:var(--text)">3 partes:</strong></p>
+        <ul style="font-size:15px;color:var(--dim);list-style:none;padding-left:0;margin-bottom:8px">
           <li style="padding-left:16px;margin-bottom:3px">→ Entradas: números que recibe</li>
           <li style="padding-left:16px;margin-bottom:3px">→ Pesos de cada entrada</li>
           <li style="padding-left:16px">→ Salida: el número final obtenido</li>
         </ul>
-        <p style="font-size:13px;color:var(--dim)">Realiza una serie de sumas y una función de activación.</p>
+        <p style="font-size:15px;color:var(--dim)">Realiza una serie de sumas y una función de activación.</p>
       </div>
     </div>
     <!-- Diagrama red neuronal -->
@@ -639,38 +639,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
       <div style="display:flex;align-items:stretch;gap:0;background:var(--border);flex-wrap:wrap">
         <div style="background:rgba(232,98,42,.12);border:2px solid rgba(232,98,42,.5);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Dataset</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">Corpus de datos. Determina qué sabe el modelo y qué sesgos reproduce.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">Corpus de datos. Determina qué sabe el modelo y qué sesgos reproduce.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(245,158,11,.08);border:2px solid rgba(245,158,11,.4);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)">Entrenamiento</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">El modelo ajusta millones de parámetros para predecir el output correcto.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">El modelo ajusta millones de parámetros para predecir el output correcto.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(167,139,250,.08);border:2px solid rgba(167,139,250,.4);padding:20px 22px;flex:2;min-width:150px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple)">Arquitectura algoritmica con modelos pre-entrenados integrados</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">Pesos fijos. El conocimiento adquirido codificado en la arquitectura.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">Pesos fijos. El conocimiento adquirido codificado en la arquitectura.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(59,130,246,.08);border:2px solid rgba(59,130,246,.4);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)">Implementacion</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">Interfaz web, API, local o integrado en software.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">Interfaz web, API, local o integrado en software.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.15);padding:20px 22px;flex:1;min-width:100px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)">Input</div>
           <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:4px">Prompt · Parámetros</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">Lo que el usuario proporciona: texto, imagen, ajustes.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">Lo que el usuario proporciona: texto, imagen, ajustes.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.15);padding:20px 22px;flex:1;min-width:100px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)">Activacion de modelo</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">El modelo procesa el input con sus parámetros.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">El modelo procesa el input con sus parámetros.</div>
         </div>
-        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:16px">→</div>
         <div style="background:rgba(0,196,140,.1);border:2px solid rgba(0,196,140,.45);padding:20px 22px;flex:1;min-width:90px;display:flex;flex-direction:column;gap:6px">
           <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)">Output</div>
-          <div style="font-size:12px;color:var(--dim);line-height:1.5">Texto, imagen, audio o video generado.</div>
+          <div style="font-size:14px;color:var(--dim);line-height:1.5">Texto, imagen, audio o video generado.</div>
         </div>
       </div>
     </div>
