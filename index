@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intro IA Crítica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --void:#080808;--s1:#0f0f0f;--s2:#141414;--s3:#1a1a1a;--s4:#202020;
+  --border:rgba(255,255,255,0.07);--border-b:rgba(255,255,255,0.14);
+  --text:#ede8e0;--dim:#8a8480;--faint:#4a4440;
+  --accent:#e8622a;--accent-dim:rgba(232,98,42,0.1);
+  --green:#00c48c;--green-dim:rgba(0,196,140,0.1);
+  --blue:#3b82f6;--blue-dim:rgba(59,130,246,0.1);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,0.1);
+  --red:#f43f5e;--amber:#f59e0b;
+  --serif:'Helvetica Neue',Helvetica,Arial,sans-serif;
+  --body:'Space Grotesk',sans-serif;
+  --mono:'Space Mono',monospace;
+  --nav-h:56px;
+}
+:root.font-b{
+  --serif:'Arial Black',Arial,sans-serif;
+  --body:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.65;overflow-x:hidden}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--s4)}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,8,.97);border-bottom:1px solid var(--accent)}
+.nav-logo{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:10px}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:blink 3s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes slideR{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+.nav-links{display:flex}
+.nav-btn{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 18px;background:none;border:none;border-left:1px solid var(--border);color:var(--dim);cursor:pointer;transition:all .2s}
+.nav-btn:last-child{border-right:1px solid var(--border)}
+.nav-btn:hover{color:var(--text);background:var(--s1)}
+.nav-btn.active{color:var(--accent);background:var(--accent-dim)}
+.nav-toggle{display:none;background:none;border:1px solid var(--border);padding:6px 12px;font-size:16px;cursor:pointer;color:var(--text)}
+
+/* ═══ PAGES ═══ */
+.page{display:none;min-height:100vh;padding-top:var(--nav-h)}
+.page.active{display:block}
+
+/* ═══ SECTION BLOCKS | alternating BG ═══ */
+.block{padding:40px 48px;border-bottom:1px solid var(--border)}
+.block:nth-child(odd){background:var(--void)}
+.block:nth-child(even){background:var(--s1)}
+.block-alt{background:var(--s2)!important}
+.block-accent{border-top:2px solid var(--accent)!important}
+.block-title{font-family:var(--serif);font-size:clamp(20px,2.5vw,30px);font-weight:700;color:var(--text);letter-spacing:-.01em;margin-bottom:20px}
+.block-lead{font-size:14px;color:var(--dim);max-width:600px;line-height:1.75;margin-bottom:24px}
+
+/* ═══ SEC HEADER ═══ */
+.sec-header{padding:40px 48px 32px;border-bottom:2px solid var(--border);background:var(--void)}
+.sec-tag{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.sec-title{font-family:var(--serif);font-size:clamp(36px,5.5vw,60px);font-weight:800;color:var(--text);letter-spacing:-.02em;line-height:1;margin-bottom:0}
+.sec-title-line{display:block;width:48px;height:3px;background:var(--accent);margin-top:16px}
+
+/* ═══ WELCOME ═══ */
+.w-hero{min-height:calc(100vh - var(--nav-h) - 156px);display:flex;flex-direction:column;justify-content:flex-end;padding:80px 48px 52px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);background:var(--void)}
+.w-bg{position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:clamp(160px,22vw,320px);font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(232,98,42,0.06);user-select:none;pointer-events:none;line-height:1}
+.w-label{font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.w-title{font-family:var(--serif);font-size:clamp(52px,9vw,110px);font-weight:800;line-height:.9;color:var(--text);letter-spacing:-.02em;margin-bottom:24px}
+.w-title span{color:var(--accent)}
+.w-sub{font-size:16px;color:var(--dim);max-width:500px;line-height:1.75;border-left:2px solid var(--accent);padding-left:18px}
+.w-nav{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border)}
+.wni{background:var(--s1);padding:28px 32px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden}
+.wni::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transition:transform .25s;transform-origin:bottom}
+.wni:hover{background:var(--s2)}
+.wni:hover::before{transform:scaleY(1)}
+.wni-num{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.15em;margin-bottom:8px}
+.wni-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px}
+.wni-desc{font-size:13px;color:var(--dim);line-height:1.6}
+.wni-arrow{font-size:18px;color:var(--accent);margin-top:12px;display:block;transition:transform .2s}
+.wni:hover .wni-arrow{transform:translateX(4px)}
+
+/* ═══ HISTORIA ═══ */
+.tl-filters-wrap{padding:12px 48px;border-bottom:1px solid var(--border);display:flex;gap:0;background:var(--s1)}
+.tl-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;border:none;border-right:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;transition:all .18s}
+.tl-btn:first-child{border-left:1px solid var(--border)}
+.tl-btn:hover{color:var(--text);background:var(--s2)}
+.tl-btn.active{color:var(--accent);background:var(--accent-dim)}
+.tl-outer{overflow-x:auto;overflow-y:visible;padding:56px 0 40px;cursor:grab;-webkit-overflow-scrolling:touch;background:var(--void)}
+.tl-outer:active{cursor:grabbing}
+.tl-outer::-webkit-scrollbar{height:3px}
+.tl-outer::-webkit-scrollbar-thumb{background:var(--s4)}
+.tl-track{display:flex;align-items:center;position:relative;padding:0 48px;min-width:max-content}
+.tl-track::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:var(--border-b);z-index:0}
+.tl-item{display:flex;flex-direction:column;align-items:center;position:relative;flex-shrink:0;width:190px;cursor:pointer}
+.tl-item:nth-child(odd){flex-direction:column}
+.tl-item:nth-child(even){flex-direction:column-reverse}
+.tl-dot{width:10px;height:10px;border-radius:50%;border:2px solid var(--border-b);background:var(--void);z-index:1;transition:all .2s;flex-shrink:0}
+.tl-item:hover .tl-dot{background:var(--accent);border-color:var(--accent);box-shadow:0 0 10px var(--accent)}
+.tl-connector{width:1px;height:36px;background:var(--border);flex-shrink:0}
+.tl-card{background:var(--s1);padding:12px 14px;width:172px;border:1px solid var(--border);transition:all .2s}
+.tl-item:hover .tl-card{border-color:var(--accent);background:var(--s2)}
+.tl-year-label{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:4px}
+.tl-card-title{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:4px}
+.tl-card-short{font-size:11px;color:var(--dim);line-height:1.5;display:none;margin-bottom:6px}
+.tl-card-link{display:none;font-family:var(--mono);font-size:9px;color:var(--blue);letter-spacing:.06em}
+.tl-item.open .tl-card-short,.tl-item.open .tl-card-link{display:block}
+.tl-cat-tag{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:1px 5px;border:1px solid;margin-bottom:4px;display:inline-block}
+
+/* ═══ FUNDAMENTOS ═══ */
+.fund-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border)}
+.fund-grid.cols3{grid-template-columns:repeat(3,1fr)}
+.fc{background:transparent;padding:24px 26px;transition:background .15s;position:relative}
+.fc:hover{background:rgba(255,255,255,0.03)}
+.fc-tag{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 7px;border:1px solid;display:inline-block;margin-bottom:10px}
+.fc-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:10px;letter-spacing:-.01em}
+.fc-text{font-size:13px;color:var(--dim);line-height:1.7}
+.fc-text strong{color:var(--text);font-weight:600}
+.fc.span2{grid-column:span 2}
+.fc.full{grid-column:1/-1}
+
+/* IA Campo diagram */
+
+
+/* VS layout */
+.vs-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.vs-side{background:var(--s1);padding:24px 26px}
+.vs-side:hover{background:var(--s2)}
+.vs-tag{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 7px;border:1px solid;display:inline-block;margin-bottom:10px}
+.vs-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:12px}
+.vs-text{font-size:13px;color:var(--dim);line-height:1.7}
+.vs-text li{list-style:none;padding-left:12px;margin-bottom:4px}
+.vs-text li::before{content:'→ ';color:var(--accent)}
+
+/* ANI/AGI/ASI horizontal */
+.agi-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.agi-card{padding:28px 24px;display:flex;flex-direction:column;gap:12px}
+.agi-card:nth-child(1){background:var(--s1)}
+.agi-card:nth-child(2){background:var(--s2)}
+.agi-card:nth-child(3){background:var(--s3)}
+.agi-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 8px;border:1px solid;display:inline-block;width:fit-content}
+.agi-abbr{font-family:var(--serif);font-size:48px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.agi-name{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.agi-text{font-size:13px;color:var(--dim);line-height:1.7}
+.agi-text strong{color:var(--text)}
+.agi-status{font-family:var(--mono);font-size:9px;padding:3px 8px;border:1px solid;display:inline-block;margin-top:auto}
+
+/* MODEL FLOW */
+.flow-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 10px;border:1px solid;display:inline-block;margin-bottom:16px}
+.flow-wrap{overflow-x:auto;padding-bottom:8px}
+.flow-track{display:flex;align-items:flex-start;gap:0;min-width:max-content}
+.flow-step{display:flex;flex-direction:column;gap:6px;width:140px;flex-shrink:0;position:relative}
+.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--dim);font-size:14px;padding-top:30px}
+.flow-box{padding:8px 10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.flow-box.input{background:rgba(232,98,42,0.15);border:1px solid rgba(232,98,42,0.4);color:var(--accent)}
+.flow-box.process{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--amber)}
+.flow-box.predict{background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.3);color:var(--purple)}
+.flow-box.decode{background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);color:var(--blue)}
+.flow-box.output{background:rgba(0,196,140,0.1);border:1px solid rgba(0,196,140,0.3);color:var(--green)}
+.flow-box.sampler{background:rgba(167,139,250,0.15);border:1px dashed rgba(167,139,250,0.4);color:var(--purple)}
+.flow-type{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+.flow-name{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase}
+.flow-desc{font-size:11px;color:var(--dim);line-height:1.5}
+.flow-note{font-size:11px;color:var(--dim);line-height:1.5;background:var(--s3);padding:8px 10px;border-left:2px solid var(--accent)}
+.flow-checkpoint{font-size:10px;color:var(--dim);background:var(--s4);padding:8px 12px;border:1px solid var(--border);margin-top:12px;line-height:1.5}
+.flow-checkpoint strong{color:var(--amber)}
+
+/* Model dataset rows */
+.model-row{display:grid;grid-template-columns:140px 1fr;gap:1px;background:var(--border);margin-bottom:1px}
+.model-label{background:var(--s2);padding:16px 16px;display:flex;flex-direction:column;gap:4px}
+.model-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)}
+.model-maker{font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase}
+.model-body{background:var(--s1);padding:16px 18px}
+.model-body p{font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:6px}
+.model-alert{font-size:12px;color:var(--red)}
+
+/* ═══ HERRAMIENTAS ═══ */
+.filter-bar{display:flex;flex-wrap:wrap;gap:0;background:var(--s1);border-bottom:1px solid var(--border)}
+.fb-btn{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:10px 20px;border:none;border-right:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fb-btn:first-child{border-left:1px solid var(--border)}
+.fb-btn:hover{color:var(--text);background:var(--s2)}
+.fb-btn.active{color:var(--accent);background:var(--accent-dim);font-weight:700}
+.access-bar{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--s2)}
+.a-btn{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:8px 16px;border:none;border-right:1px solid var(--border);background:transparent;color:var(--dim);cursor:pointer;transition:all .15s;white-space:nowrap}
+.a-btn:hover{background:var(--s3)}
+.a-btn.active{font-weight:700;color:var(--text);background:var(--s3)}
+
+.uc-section{border-bottom:1px solid var(--border);padding:36px 48px 0;margin-top:0}.uc-section:first-child{padding-top:40px}
+.uc-section.hidden{display:none}
+.uc-section:nth-child(odd){background:var(--void)}
+.uc-section:nth-child(even){background:var(--s1)}
+.uc-header{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.uc-title{font-family:var(--serif);font-size:clamp(22px,3vw,32px);font-weight:700;color:var(--text);letter-spacing:-.01em}
+.uc-filter-tag{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border:1px solid;color:var(--accent);border-color:rgba(232,98,42,.4);background:var(--accent-dim)}
+.uc-io{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:20px}
+.io-pill{display:flex;align-items:baseline;gap:8px}
+.io-lbl{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.io-val{font-size:13px;color:var(--dim)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--border);margin-bottom:36px}
+.card{background:var(--s1);padding:20px 22px;transition:background .15s;position:relative}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s}
+.card:hover{background:var(--s2)}
+.card:hover::before{background:var(--accent)}
+.card.access-hidden{display:none}
+.card-name{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.card-maker{font-family:var(--mono);font-size:9px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin:3px 0 9px}
+.card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+.card-acc{font-size:9px;padding:2px 6px;border:1px solid;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.card-price{font-size:9px;padding:2px 6px;border:1px solid var(--border);color:var(--dim);font-family:var(--mono)}
+.card-mods{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:8px}
+.card-mod{font-size:9px;padding:2px 6px;border:1px solid;border-radius:2px;font-family:var(--mono)}
+.card-desc{font-size:13px;color:var(--dim);line-height:1.65}
+.card-note{font-size:11px;color:var(--faint);padding:5px 8px;background:rgba(232,98,42,.05);border-left:2px solid var(--accent);margin-top:7px;line-height:1.5}
+.card-link{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--blue);text-decoration:none;text-transform:uppercase;margin-top:9px}
+
+/* Plataformas */
+.plat-modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border);margin-bottom:28px}
+.plat-mode{background:var(--s1);padding:20px 22px;transition:background .15s;position:relative}
+.plat-mode::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .2s}
+.plat-mode:hover{background:var(--s2)}
+.plat-mode.m-priv::before{background:var(--blue)}
+.plat-mode.m-open::before{background:var(--green)}
+.plat-mode.m-int::before{background:var(--accent)}
+.plat-mode-title{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.plat-mode-desc{font-size:13px;color:var(--dim);line-height:1.6}
+
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:24px}
+.tbl th{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--border);background:var(--s2);color:var(--dim);text-align:left}
+.tbl th.h-priv{color:var(--blue)}
+.tbl th.h-open{color:var(--green)}
+.tbl td{padding:8px 12px;border:1px solid var(--border);background:var(--s1);color:var(--dim);vertical-align:top;line-height:1.5}
+.tbl td:first-child{color:var(--text);font-weight:500;background:var(--s2)}
+
+/* Requerimientos */
+.req-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border);margin-bottom:24px}
+.req-item{background:var(--s1);padding:16px 18px}
+.req-item:hover{background:var(--s2)}
+.req-label{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.req-val{font-size:14px;color:var(--text);font-weight:600;margin-bottom:3px}
+.req-note{font-size:11px;color:var(--dim)}
+
+/* MINI GLOSARIO */
+.mini-glos{padding:40px 48px 56px;background:#1a0f2e}
+.mini-glos-label{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:8px}
+.mini-glos-label::before{content:'';width:20px;height:1px;background:var(--accent)}
+.mgg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border)}
+.mgi{background:rgba(255,255,255,0.04);padding:18px 20px;transition:background .15s;cursor:pointer}
+.mgi:hover{background:rgba(255,255,255,0.08)}
+.mgi-term{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.mgi-short{font-size:12px;color:var(--dim);line-height:1.6}
+
+
+/* FLOW DIAGRAM */
+.flow-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:2px 10px;border:1px solid;display:inline-block;margin-bottom:16px}
+.flow-wrap{overflow-x:auto;padding-bottom:8px}
+.flow-track{display:flex;align-items:flex-start;gap:0;min-width:max-content}
+.flow-step{display:flex;flex-direction:column;gap:6px;width:140px;flex-shrink:0}
+.flow-arrow-col{display:flex;align-items:center;justify-content:center;width:28px;flex-shrink:0;align-self:stretch;color:var(--faint);font-size:14px;padding-top:30px}
+.flow-box{padding:8px 10px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.flow-box.input{background:rgba(232,98,42,.15);border:1px solid rgba(232,98,42,.4);color:var(--accent)}
+.flow-box.process{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--amber)}
+.flow-box.predict{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
+.flow-box.decode{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:var(--blue)}
+.flow-box.output{background:rgba(0,196,140,.1);border:1px solid rgba(0,196,140,.3);color:var(--green)}
+.flow-box.sampler{background:rgba(167,139,250,.15);border:1px dashed rgba(167,139,250,.4);color:var(--purple)}
+.flow-type{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+.flow-name{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--text);letter-spacing:.05em;text-transform:uppercase}
+.flow-desc{font-size:11px;color:var(--dim);line-height:1.5}
+.flow-checkpoint{font-size:10px;color:var(--dim);background:var(--s4);padding:8px 12px;border:1px solid var(--border);margin-top:12px;line-height:1.5}
+.flow-checkpoint strong{color:var(--amber)}
+
+
+/* BACK TO TOP */
+.back-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 2px 12px rgba(232,98,42,.4);transition:opacity .2s}
+.back-top.visible{display:flex}
+.back-top:hover{opacity:.85}
+/* SEARCH HIGHLIGHT */
+.search-highlight{background:rgba(232,98,42,.25);outline:2px solid var(--accent);border-radius:2px;transition:all .3s}
+
+/* RESPONSIVE */
+@media(max-width:680px){
+  nav{padding:0 20px}
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:fixed;top:var(--nav-h);left:0;right:0;flex-direction:column;background:var(--s1);border-bottom:2px solid var(--accent);z-index:199}
+  .nav-links.open{display:flex}
+  .nav-btn{padding:16px 24px;border:none;border-bottom:1px solid var(--border);text-align:left;font-size:13px;width:100%}
+  .w-hero{padding:48px 24px 36px}
+  .sec-header,.block,.fund-section-pad{padding-left:24px;padding-right:24px}
+  .block{padding-left:24px;padding-right:24px}
+  .uc-section{padding:28px 24px 0}
+  .cards{grid-template-columns:1fr}
+  .vs-wrap,.agi-wrap,.fund-grid.cols3{grid-template-columns:1fr}
+  .campo-wrap{flex-direction:column}
+  .mini-glos{padding:24px 24px 32px}
+  .tl-filters-wrap{padding:12px 20px}
+  .filter-bar{flex-wrap:nowrap;overflow-x:auto}
+  .filter-bar::-webkit-scrollbar{display:none}
+  .fb-btn{flex-shrink:0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><div class="nav-dot"></div>INTRO IA CRÍTICA</div>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <div class="nav-links">
+    <button class="nav-btn active" onclick="showPage('welcome')">Inicio</button>
+    <button class="nav-btn" onclick="showPage('historia')">Historia</button>
+    <button class="nav-btn" onclick="showPage('fundamentos')">Fundamentos</button>
+    <button class="nav-btn" onclick="showPage('herramientas')">Herramientas</button>
+  </div>
+</nav>
+
+<!-- ══ WELCOME ══ -->
+<div id="welcome" class="page active">
+  <div class="w-hero">
+    <div class="w-bg">IA</div>
+    <h1 class="w-title">Intro IA<br><span>Crítica</span></h1>
+    <p class="w-sub">Un recorrido por el ecosistema de la inteligencia artificial generativa desde una perspectiva técnica, histórica y crítica.</p>
+  </div>
+  <div class="w-nav">
+    <div class="wni" onclick="showPage('historia')"><div class="wni-num">01</div><div class="wni-title">Historia</div><div class="wni-desc">Línea de tiempo de hitos técnicos y culturales desde 1822.</div><span class="wni-arrow">→</span></div>
+    <div class="wni" onclick="showPage('fundamentos')"><div class="wni-num">02</div><div class="wni-title">Fundamentos</div><div class="wni-desc">Cómo funcionan los modelos de imagen, video y lenguaje.</div><span class="wni-arrow">→</span></div>
+    <div class="wni" onclick="showPage('herramientas')"><div class="wni-num">03</div><div class="wni-title">Herramientas</div><div class="wni-desc">Ecosistema actual: LLMs, imagen, video y audio.</div><span class="wni-arrow">→</span></div>
+  </div>
+  <div style="padding:20px 48px;border-top:1px solid var(--border);background:var(--void)">
+    <p style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:center;line-height:1.8">
+      Contenido académico colaborativo de difusión &nbsp;·&nbsp; Introducción a la Inteligencia Artificial desde una perspectiva crítica &nbsp;·&nbsp; 2026
+    </p>
+  </div>
+</div>
+
+<!-- ══ HISTORIA ══ -->
+<div id="historia" class="page">
+  <div class="sec-header">
+    <div class="sec-tag">Historia</div>
+    <h1 class="sec-title">Línea de tiempo</h1>
+    <span class="sec-title-line"></span>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;background:var(--s2);border-bottom:1px solid var(--border);padding:0">
+  <div class="tl-filters-wrap" id="tl-filters" style="border-bottom:none;flex:1;padding:12px 48px"></div>
+  <div style="display:flex;gap:0;border-left:1px solid var(--border);flex-shrink:0">
+    <button onclick="scrollTL(-1)" title="Anterior" style="font-family:var(--mono);font-size:16px;padding:10px 20px;background:transparent;border:none;color:var(--dim);cursor:pointer;border-right:1px solid var(--border);transition:color .15s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color=''">←</button>
+    <button onclick="scrollTL(1)" title="Siguiente" style="font-family:var(--mono);font-size:16px;padding:10px 20px;background:transparent;border:none;color:var(--dim);cursor:pointer;transition:color .15s" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color=''">→</button>
+  </div>
+</div>
+  <div>
+  <div class="tl-outer" id="tl-outer"><div class="tl-track" id="tl-track"></div></div>
+  <div id="tl-arrow-hint" style="display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:8px 48px 4px;background:var(--void);transition:opacity .4s">
+    <span style="font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase">deslizá para explorar</span>
+    <span style="color:var(--accent);font-size:18px;animation:slideR 1.4s ease-in-out infinite">→</span>
+  </div>
+</div>
+  <!-- REFERENTES DE LA HISTORIA -->
+  <div style="padding:32px 48px 48px;background:var(--s2);border-top:1px solid var(--border)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Referentes de la historia</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1px;background:var(--border)">
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Charles Babbage</div><a href="https://en.wikipedia.org/wiki/Charles_Babbage" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1791–1871</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Matemático e inventor británico. Diseñó la Máquina Diferencial y la Analítica. Su trabajo fue reconocido plenamente recién en el siglo XX.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ada Lovelace</div><a href="https://en.wikipedia.org/wiki/Ada_Lovelace" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1815–1852</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Matemática británica. Considerada la primera programadora de la historia. Hija del poeta Lord Byron. Murió a los 36 años.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Alan Turing</div><a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1912–1954</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la informática teórica. Descifró los códigos Enigma. Fue perseguido por su homosexualidad. Indulto póstumo en 2013.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Claude Shannon</div><a href="https://en.wikipedia.org/wiki/Claude_Shannon" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1916–2001</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la teoría de la información. Demostró que la lógica booleana podía implementarse con circuitos eléctricos.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Norbert Wiener</div><a href="https://en.wikipedia.org/wiki/Norbert_Wiener" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1894–1964</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padre de la cibernética. Matemático del MIT. Uno de los primeros en advertir sobre los riesgos sociales de la automatización.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Joseph Weizenbaum</div><a href="https://en.wikipedia.org/wiki/Joseph_Weizenbaum" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1923–2008</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Creador de ELIZA. Autor de "Computer Power and Human Reason" (1976). Crítico filosófico del campo que ayudó a construir.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Yann LeCun</div><a href="https://en.wikipedia.org/wiki/Yann_LeCun" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1960</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Científico francés. Director de IA en Meta. Premio Turing 2018. Creador de las CNNs. Pionero del Deep Learning.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Fei-Fei Li</div><a href="https://en.wikipedia.org/wiki/Fei-Fei_Li" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1976</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Directora del AI Human-Centered Lab en Stanford. Creadora de ImageNet. Una de las voces más influyentes en IA centrada en valores humanos.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Geoffrey Hinton</div><a href="https://en.wikipedia.org/wiki/Geoffrey_Hinton" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1947</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Padrino del Deep Learning. Premio Turing 2018. Renunció a Google en 2023 para hablar libremente sobre los riesgos de la IA.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text)">Ian Goodfellow</div><a href="https://en.wikipedia.org/wiki/Ian_Goodfellow" target="_blank" style="font-family:var(--mono);font-size:8px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap">Ver más ↗</a></div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">1985</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Inventor de las GANs. Uno de los papers más citados de la última década. Trabajó en Google Brain, OpenAI y Apple.</div></div>
+      <div style="background:var(--s1);padding:16px 18px"><div style="font-family:var(--serif);font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px">Google | OpenAI | Stability AI | DeepMind</div><div style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.1em;margin-bottom:5px">2000s–hoy</div><div style="font-size:12px;color:var(--dim);line-height:1.6">Las organizaciones que concentran la mayor parte de la investigación y el desarrollo de IA a nivel global.</div></div>
+    </div>
+  </div>
+  <div class="mini-glos">
+    <div class="mini-glos-label">Términos clave</div>
+    <div class="mgg">
+      <div class="mgi"><div class="mgi-term">Perceptron</div><div class="mgi-short">Primera red neuronal que aprende por experiencia. Rosenblatt, 1958. Sus limitaciones contribuyeron al primer invierno.</div></div>
+      <div class="mgi"><div class="mgi-term">CNN</div><div class="mgi-short">Red Neuronal Convolucional. Detecta patrones visuales en capas jerárquicas. LeCun, 1989. Base de la visión por computadora.</div></div>
+      <div class="mgi"><div class="mgi-term">GAN</div><div class="mgi-short">Generador vs Discriminador. Goodfellow, 2014. Primera arquitectura que sintetiza imágenes fotorrealistas.</div></div>
+      <div class="mgi"><div class="mgi-term">Transformer</div><div class="mgi-short">Lee todo el contexto simultáneamente. Google, 2017. Base de GPT, Claude, Gemini, Stable Diffusion y Flux.</div></div>
+      <div class="mgi"><div class="mgi-term">Efecto ELIZA</div><div class="mgi-short">Tendencia a atribuir comprensión donde hay estadística. Weizenbaum, 1966. Se reproduce a escala masiva hoy.</div></div>
+      <div class="mgi"><div class="mgi-term">Invierno de la IA</div><div class="mgi-short">Períodos de corte de financiamiento. 1974 y 1987. Causa: confundir reglas con patrones.</div></div>
+      <div class="mgi"><div class="mgi-term">ImageNet</div><div class="mgi-short">14 millones de imágenes etiquetadas. Fei-Fei Li, 2009. El combustible que desbloqueó el Deep Learning.</div></div>
+      <div class="mgi"><div class="mgi-term">CLIP</div><div class="mgi-short">Conecta texto e imagen en el mismo espacio matemático. OpenAI, 2021. Condición necesaria para los modelos texto-a-imagen.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FUNDAMENTOS ══ -->
+<div id="fundamentos" class="page">
+  <div class="sec-header">
+    <div class="sec-tag">Fundamentos</div>
+    <h1 class="sec-title">La inteligencia artificial</h1>
+    <span class="sec-title-line"></span>
+  </div>
+
+    <!-- 1. EL CAMPO DE LA IA -->
+  <div class="block" style="background:var(--void)">
+    <h2 class="block-title">El campo de la IA</h2>
+    <div style="overflow-x:auto">
+      <svg width="100%" viewBox="0 0 680 340" role="img" style="display:block;max-width:680px">
+  <title>El campo de la IA</title>
+
+  <!-- Rings -->
+  <circle cx="200" cy="170" r="155" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+  <circle cx="200" cy="170" r="112" fill="rgba(167,139,250,0.06)" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+  <circle cx="200" cy="170" r="72"  fill="rgba(0,196,140,0.07)"  stroke="rgba(0,196,140,0.55)" stroke-width="1.5"/>
+  <circle cx="200" cy="170" r="38"  fill="rgba(232,98,42,0.14)"  stroke="rgba(232,98,42,0.75)" stroke-width="2"/>
+
+  <!-- Labels centered in each ring band at top -->
+  <!-- IA band: midpoint between r=112 (top y=58) and r=155 (top y=15) → label at y=34 -->
+  <text x="200" y="30" text-anchor="middle"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-size="9" font-weight="700" fill="rgba(255,255,255,0.45)" letter-spacing="2.5">INTELIGENCIA ARTIFICIAL</text>
+
+  <!-- ML band: midpoint between r=72 (top y=98) and r=112 (top y=58) → y=76 -->
+  <text x="200" y="73" text-anchor="middle"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-size="9" font-weight="700" fill="#a78bfa" letter-spacing="2">MACHINE LEARNING</text>
+
+  <!-- DL band: midpoint between r=38 (top y=132) and r=72 (top y=98) → y=113 -->
+  <text x="200" y="111" text-anchor="middle"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-size="9" font-weight="700" fill="#00c48c" letter-spacing="1.5">DEEP LEARNING</text>
+
+  <!-- IA Gen core -->
+  <text x="200" y="165" text-anchor="middle"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-size="8" font-weight="700" fill="#e8622a" letter-spacing="0.5">IA</text>
+  <text x="200" y="178" text-anchor="middle"
+    font-family="'Helvetica Neue',Helvetica,Arial,sans-serif"
+    font-size="8" font-weight="700" fill="#e8622a" letter-spacing="0.5">GENERATIVA</text>
+
+  <!-- NLP | CV | Robótica — arrows FROM the outer gray (IA) ring -->
+  <!-- NLP: arrow from IA ring right at ~y=105 -->
+  <line x1="354" y1="105" x2="378" y2="90" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+  <polygon points="376,86 384,91 378,94" fill="rgba(255,255,255,0.2)"/>
+  <rect x="384" y="72" width="268" height="36" rx="3" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="384" y="72" width="3" height="36" fill="rgba(255,255,255,0.4)"/>
+  <text x="396" y="86" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#ede8e0">N.L.P.</text>
+  <text x="396" y="101" font-family="'Space Grotesk',sans-serif" font-size="10" fill="#8a8480">Procesamiento del Lenguaje Natural</text>
+
+  <!-- CV: arrow from IA ring right at ~y=170 -->
+  <line x1="355" y1="170" x2="384" y2="150" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+  <polygon points="382,146 390,151 384,154" fill="rgba(255,255,255,0.2)"/>
+  <rect x="384" y="132" width="268" height="36" rx="3" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="384" y="132" width="3" height="36" fill="rgba(255,255,255,0.4)"/>
+  <text x="396" y="146" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#ede8e0">Computer Vision</text>
+  <text x="396" y="161" font-family="'Space Grotesk',sans-serif" font-size="10" fill="#8a8480">Visión e interpretación de imágenes</text>
+
+  <!-- Robótica: arrow from IA ring right at ~y=225 -->
+  <line x1="348" y1="224" x2="378" y2="210" stroke="rgba(255,255,255,0.2)" stroke-width="1.2"/>
+  <polygon points="376,206 384,211 378,214" fill="rgba(255,255,255,0.2)"/>
+  <rect x="384" y="192" width="268" height="36" rx="3" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  <rect x="384" y="192" width="3" height="36" fill="rgba(255,255,255,0.4)"/>
+  <text x="396" y="206" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#ede8e0">Robótica</text>
+  <text x="396" y="221" font-family="'Space Grotesk',sans-serif" font-size="10" fill="#8a8480">Sistemas físicos autónomos</text>
+
+  <!-- Descriptive arrows from colored rings -->
+  <line x1="268" y1="237" x2="294" y2="258" stroke="rgba(167,139,250,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="297" y="257" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="8" fill="rgba(167,139,250,0.7)">aprende de datos</text>
+
+  <line x1="242" y1="237" x2="243" y2="268" stroke="rgba(0,196,140,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+  <text x="246" y="267" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="8" fill="rgba(0,196,140,0.7)">redes profundas</text>
+
+  <!-- Legend -->
+  <text x="44" y="316" font-family="'Space Mono',monospace" font-size="8" fill="#4a4440" letter-spacing="1">GENERAL</text>
+  <line x1="96" y1="312" x2="316" y2="312" stroke="#4a4440" stroke-width="0.5"/>
+  <polygon points="314,309 320,312 314,315" fill="#4a4440"/>
+  <text x="324" y="316" font-family="'Space Mono',monospace" font-size="8" fill="#4a4440" letter-spacing="1">PARTICULAR</text>
+</svg>
+    </div>
+  </div>
+
+    <!-- 2. MACHINE LEARNING + NIVELES -->
+  <div class="block" style="background:var(--s1)">
+    <div style="background:var(--s2);padding:24px 28px;margin-bottom:24px;border-left:2px solid var(--blue)">
+      <div style="background:var(--s1);padding:24px 26px">
+        <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px">Machine Learning</div>
+        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px"><strong style="color:var(--text)">Machine Learning</strong> es una rama de la inteligencia artificial que se ocupa de que las máquinas aprendan a partir de datos.</p>
+        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:10px">Una rama más avanzada es el <strong style="color:var(--text)">deep learning</strong>, que utiliza redes neuronales con muchas capas, capaces de aprender patrones complejos de forma jerárquica: formas visuales, estilos o significados del lenguaje.</p>
+        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:8px">Muchas áreas usan técnicas de ML o DL para funcionar:</p>
+        <ul style="font-size:13px;color:var(--dim);line-height:1.7;list-style:none;padding-left:0">
+          <li style="padding-left:16px;margin-bottom:4px">→ Cuando una IA "ve": <strong style="color:var(--text)">Computer Vision + Deep Learning</strong></li>
+          <li style="padding-left:16px;margin-bottom:4px">→ Cuando una IA "traduce": <strong style="color:var(--text)">NLP + Machine Learning</strong></li>
+          <li style="padding-left:16px">→ Cuando genera imágenes desde texto: <strong style="color:var(--text)">Visión + Lenguaje + DL</strong></li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="width:20px;height:1px;background:var(--dim);display:inline-block"></span>Tres niveles | cada uno contiene al anterior</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-bottom:32px">
+      <div style="padding:28px 24px;background:var(--s1)">
+        <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(59,130,246,0.2);line-height:1;margin-bottom:8px">01</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(59,130,246,.35);display:inline-block">Nivel 1</div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">Machine Learning</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.7">Las máquinas <strong style="color:var(--text)">aprenden de datos</strong> sin reglas explícitas. Le mostrás ejemplos y el sistema aprende los patrones.<br><br>Supervisado, no supervisado y por refuerzo son los tres paradigmas.</div>
+      </div>
+      <div style="padding:28px 24px;background:var(--s2)">
+        <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(167,139,250,0.2);line-height:1;margin-bottom:8px">02</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(167,139,250,.35);display:inline-block">Nivel 2 | subcampo del ML</div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">Deep Learning</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.7">Redes neuronales con <strong style="color:var(--text)">muchas capas jerárquicas</strong>. Bordes → formas → conceptos. Base de todos los modelos actuales.</div>
+      </div>
+      <div style="padding:28px 24px;background:var(--s3)">
+        <div style="font-family:var(--mono);font-size:48px;font-weight:700;color:rgba(232,98,42,0.2);line-height:1;margin-bottom:8px">03</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;padding:2px 8px;border:1px solid rgba(232,98,42,.35);display:inline-block">Nivel 3 | aplicación del DL</div>
+        <div style="font-family:var(--serif);font-size:20px;font-weight:700;color:var(--text);margin-bottom:10px">IA Generativa</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.7">Sistemas que <strong style="color:var(--text)">crean contenido nuevo</strong>: texto, imágenes, audio, video. Transformers para lenguaje, difusión para imagen.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ENFOQUES HISTÓRICOS -->
+  <div class="block" style="background:var(--void)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;display:flex;align-items:center;gap:12px"><span style="width:20px;height:1px;background:var(--dim);display:inline-block"></span>Enfoques</div>
+    <!-- Enfoques | diferenciado visualmente con borde superior de color -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)">
+      <div style="background:var(--s1);padding:24px 26px;border-top:3px solid rgba(167,139,250,0.5)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);padding:2px 7px;border:1px solid rgba(167,139,250,.35);background:rgba(167,139,250,.08);display:inline-block;margin-bottom:10px">Enfoque histórico</span>
+        <div style="font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px">IA Simbólica</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">reglas lógicas escritas por humanos</strong>.<br><br>
+          → Sistemas expertos de los 80<br>
+          → Si X entonces Y<br>
+          → Transparente pero frágil<br>
+          → No aprende de datos<br>
+          → Colapsó en el 2° invierno</div>
+      </div>
+      <div style="background:var(--s1);padding:24px 26px;border-top:3px solid rgba(59,130,246,0.5)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);padding:2px 7px;border:1px solid rgba(59,130,246,.35);background:rgba(59,130,246,.08);display:inline-block;margin-bottom:10px">Enfoque dominante hoy</span>
+        <div style="font-family:var(--serif);font-size:19px;font-weight:700;color:var(--text);margin-bottom:12px">IA Conexionista</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.7">La inteligencia como <strong style="color:var(--text)">patrones aprendidos de datos</strong>.<br><br>
+          → Redes neuronales artificiales<br>
+          → Aprende de millones de ejemplos<br>
+          → Opaca pero flexible<br>
+          → Requiere grandes volúmenes de datos<br>
+          → Base del Deep Learning actual</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. ANI/AGI/ASI -->
+  <div class="block" style="background:var(--s1)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:20px;display:flex;align-items:center;gap:12px"><span style="width:20px;height:1px;background:var(--dim);display:inline-block"></span>Tipos de inteligencia artificial</div>
+    <div class="agi-wrap">
+      <div class="agi-card">
+        <span class="agi-label" style="border-color:rgba(59,130,246,.4);color:var(--blue)">Lo que existe hoy</span>
+        <div class="agi-abbr" style="color:var(--blue)">ANI</div>
+        <div class="agi-name">Artificial Narrow Intelligence</div>
+        <div class="agi-text">Sistemas especializados en <strong>una sola tarea</strong>. Muy buenos dentro de su dominio, inútiles fuera. ChatGPT, Midjourney y AlphaGo son ANI. No tienen conciencia ni comprensión real.</div>
+        <span class="agi-status" style="border-color:rgba(0,196,140,.4);color:var(--green)">✓ Existe</span>
+      </div>
+      <div class="agi-card">
+        <span class="agi-label" style="border-color:rgba(245,158,11,.4);color:var(--amber)">Hipotética</span>
+        <div class="agi-abbr" style="color:var(--amber)">AGI</div>
+        <div class="agi-name">Artificial General Intelligence</div>
+        <div class="agi-text">Tan flexible como un humano en <strong>cualquier tarea cognitiva</strong>. No existe. Nadie sabe cuándo ni si es posible. Es el escenario hacia el que muchas organizaciones dicen trabajar.</div>
+        <span class="agi-status" style="border-color:rgba(245,158,11,.4);color:var(--amber)">? No existe</span>
+      </div>
+      <div class="agi-card">
+        <span class="agi-label" style="border-color:rgba(244,63,94,.4);color:var(--red)">Especulativa</span>
+        <div class="agi-abbr" style="color:var(--red)">ASI</div>
+        <div class="agi-name">Artificial Super Intelligence</div>
+        <div class="agi-text">Superaría la inteligencia humana en <strong>todos los aspectos</strong>. Organiza los debates sobre riesgos existenciales. La razón por la que Hinton renunció a Google en 2023.</div>
+        <span class="agi-status" style="border-color:rgba(244,63,94,.4);color:var(--red)">✕ No existe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. REDES NEURONALES + ARQUITECTURA -->
+  <div class="block" style="background:var(--s2)">
+    <div class="block-title">Redes Neuronales Artificiales</div>
+    <div style="background:var(--s1);padding:24px 28px;margin-bottom:0;border-left:2px solid var(--purple)">
+      <div style="background:var(--s2);padding:24px 26px">
+        <div style="font-family:var(--serif);font-size:18px;font-weight:700;color:var(--text);margin-bottom:12px">Redes Neuronales Artificiales</div>
+        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:8px">Una <strong style="color:var(--text)">red neuronal artificial</strong> enseña a las computadoras a procesar datos <em>inspirada en la forma en que lo hace el cerebro humano</em>. Igual que las neuronas, son capaces de recibir y enviar señales.</p>
+        <p style="font-size:13px;color:var(--dim);line-height:1.75;margin-bottom:8px">Un grupo interconectado de <strong style="color:var(--text)">nodos</strong>. Cada nodo representa una <strong style="color:var(--text)">neurona</strong> y cada flecha una <strong style="color:var(--text)">conexión</strong>. El <strong style="color:var(--text)">comportamiento</strong> se controla a través de los <strong style="color:var(--text)">parámetros</strong>.</p>
+        <p style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:6px"><strong style="color:var(--text)">3 partes:</strong></p>
+        <ul style="font-size:13px;color:var(--dim);list-style:none;padding-left:0;margin-bottom:8px">
+          <li style="padding-left:16px;margin-bottom:3px">→ Entradas: números que recibe</li>
+          <li style="padding-left:16px;margin-bottom:3px">→ Pesos de cada entrada</li>
+          <li style="padding-left:16px">→ Salida: el número final obtenido</li>
+        </ul>
+        <p style="font-size:13px;color:var(--dim)">Realiza una serie de sumas y una función de activación.</p>
+      </div>
+    </div>
+    <!-- Diagrama red neuronal -->
+    <div style="background:var(--s3);padding:20px 24px;border-top:1px solid var(--border)">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;text-align:center">Arquitectura de una red neuronal profunda</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin-right:12px">
+          <div style="font-family:var(--mono);font-size:8px;color:#00c48c;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Entrada</div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#00c48c;border:2px solid #00c48c"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#00c48c;border:2px solid #00c48c"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#00c48c;border:2px solid #00c48c"></div>
+        </div>
+        <div style="font-size:16px;color:var(--faint);margin:0 8px;align-self:center">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 12px">
+          <div style="font-family:var(--mono);font-size:8px;color:#f59e0b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Oculta 1</div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+        </div>
+        <div style="font-size:16px;color:var(--faint);margin:0 8px;align-self:center">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 12px">
+          <div style="font-family:var(--mono);font-size:8px;color:#f59e0b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Oculta 2</div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+        </div>
+        <div style="font-size:16px;color:var(--faint);margin:0 8px;align-self:center">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 12px">
+          <div style="font-family:var(--mono);font-size:8px;color:#f59e0b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Oculta 3</div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f59e0b;border:2px solid rgba(245,158,11,.4)"></div>
+        </div>
+        <div style="font-size:16px;color:var(--faint);margin:0 8px;align-self:center">→</div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin-left:12px">
+          <div style="font-family:var(--mono);font-size:8px;color:#f43f5e;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Salida</div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f43f5e;border:2px solid #f43f5e"></div>
+          <div style="width:20px;height:20px;border-radius:50%;background:#f43f5e;border:2px solid #f43f5e"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE GENERAL -->
+  <div class="block" style="background:var(--s3)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Pipeline</div>
+    <div style="padding-bottom:4px">
+      <div style="display:flex;align-items:stretch;gap:0;background:var(--border);flex-wrap:wrap">
+        <div style="background:rgba(232,98,42,.12);border:2px solid rgba(232,98,42,.5);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)">Dataset</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">Corpus de datos. Determina qué sabe el modelo y qué sesgos reproduce.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(245,158,11,.08);border:2px solid rgba(245,158,11,.4);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber)">Entrenamiento</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">El modelo ajusta millones de parámetros para predecir el output correcto.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(167,139,250,.08);border:2px solid rgba(167,139,250,.4);padding:20px 22px;flex:2;min-width:150px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--purple)">Arquitectura algoritmica con modelos pre-entrenados integrados</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">Pesos fijos. El conocimiento adquirido codificado en la arquitectura.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(59,130,246,.08);border:2px solid rgba(59,130,246,.4);padding:20px 22px;flex:1;min-width:110px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)">Implementacion</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">Interfaz web, API, local o integrado en software.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.15);padding:20px 22px;flex:1;min-width:100px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)">Input</div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:4px">Prompt · Parámetros</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">Lo que el usuario proporciona: texto, imagen, ajustes.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.15);padding:20px 22px;flex:1;min-width:100px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text)">Activacion de modelo</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">El modelo procesa el input con sus parámetros.</div>
+        </div>
+        <div style="display:flex;align-items:center;padding:0 8px;background:var(--s2);color:var(--dim);font-size:14px">→</div>
+        <div style="background:rgba(0,196,140,.1);border:2px solid rgba(0,196,140,.45);padding:20px 22px;flex:1;min-width:90px;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green)">Output</div>
+          <div style="font-size:12px;color:var(--dim);line-height:1.5">Texto, imagen, audio o video generado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- 6. CÓMO FUNCIONAN -->
+  <div class="block" style="background:var(--void);border-top:2px solid var(--accent)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Cómo funcionan los modelos</div><div class="block-title" style="font-size:clamp(26px,4vw,42px)">Large Language Model</div>
+    <div class="block-lead">Large Language Models | Es capaz de comprender y generar lenguaje natural. Se entrena con datos textuales y puede predecir la secuencia de texto en función del contexto. <strong style="color:var(--text)">Es fundamental ser crítico con los resultados</strong>: pueden ser erróneos, sin contexto o alucinaciones.</div>
+    <div class="flow-wrap">
+      <div class="flow-track">
+        <div class="flow-step">
+          <div class="flow-box input">INPUT</div>
+          <div class="flow-type">Tipo</div><div class="flow-name">Texto</div>
+          <div class="flow-desc">Lenguaje natural</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box process">Tokenización<br>[identificación]</div>
+          <div class="flow-type">Token</div><div class="flow-name">Unidad</div>
+          <div class="flow-desc">El texto se fragmenta, asignando un número identificador único a cada token.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box process">Embedding<br>[significado]</div>
+          <div class="flow-type">Vector de Alta Dim.</div>
+          <div class="flow-desc">Cada token se traduce en un vector que posiciona la palabra en un "espacio semántico", entendiendo su relación con otras.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box predict">Predicción<br>[Transformer]</div>
+          <div style="font-size:10px;margin-top:4px"><div class="flow-box sampler" style="font-size:8px;padding:4px 6px;margin-bottom:4px">SAMPLER<br><span style="font-weight:400;font-size:8px">elige las palabras más probables</span></div></div>
+          <div class="flow-type">Vector Alta Dim.</div>
+          <div class="flow-desc">El modelo calcula cómo se relaciona cada palabra con las demás, entendiendo el sentido del mensaje completo.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box decode">Decoding</div>
+          <div class="flow-type">Token</div>
+          <div class="flow-desc">Convierte el vector resultante en tokens.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box output">OUTPUT</div>
+          <div class="flow-type">Texto</div>
+          <div class="flow-desc">Los tokens se ensamblan para formar oraciones coherentes en lenguaje natural.<br><span style="color:var(--red)">El resultado puede ser falso, equivocado, erróneo, sesgado.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-checkpoint"><strong>Checkpoint</strong> | Incluye los componentes de encoder (codificación), Transformer (predicción) y sampler.</div>
+  </div>
+
+  <!-- 4.1 DATASETS LLMs -->
+  <div class="block" style="background:var(--s1)">
+    <div class="block-title">Datasets - LLMs</div>
+    <div class="block-lead">Los modelos de lenguaje se entrenan sobre corpus masivos de texto. El objetivo: dado un fragmento, <strong style="color:var(--text)">predecir el siguiente token</strong>. Los sesgos del corpus se transfieren directamente al modelo. La mayoría de los grandes LLMs fueron preentrenados con datos dominados por inglés y fuentes occidentales.</div>
+    <div style="margin-bottom:24px">
+      <div class="model-row"><div class="model-label"><div class="model-name">GPT-4</div><div class="model-maker">OpenAI</div></div><div class="model-body"><p>Multimodal: texto, imágenes y código. ~13 billones de tokens. Incluyó CommonCrawl, RefinedWeb y datos licenciados de terceros. Se especula que también incluyó Twitter, Reddit, YouTube y colecciones de libros.</p><p class="model-alert">⚠ Pesos y dataset completo nunca publicados. "Open" AI justificó en razones de competencia.</p></div></div>
+      <div class="model-row"><div class="model-label"><div class="model-name">DeepSeek V3</div><div class="model-maker">DeepSeek</div></div><div class="model-body"><p>~14.8 billones de tokens. Corpus: texto web, código, matemáticas y datos licenciados. Composición exacta no publicada.</p><p>Sí publicó el método de entrenamiento en detalle y los pesos del modelo. Se puede correr localmente.</p></div></div>
+    </div>
+  </div>
+
+  <!-- 4.2 CÓMO FUNCIONA: DM -->
+  <div class="block" style="background:var(--s2)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Cómo funcionan los modelos</div><div class="block-title" style="font-size:clamp(26px,4vw,42px)">Diffusion Model</div>
+    <div class="block-lead">Los modelos de difusión generan imágenes a partir de ruido. Responden a un prompt, generando una imagen con cierta estructura diferente al lenguaje natural. <strong style="color:var(--text)">El resultado es evaluado visualmente</strong>, siendo más sencillo darle por válido o no. Si es muy verosímil, en otro contexto puede producir fake news | es importante poder identificar las imágenes generadas con IA.</div>
+    <div class="flow-wrap">
+      <div class="flow-track">
+        <div class="flow-step">
+          <div class="flow-box input">INPUT</div>
+          <div class="flow-type">Tipo</div><div class="flow-name">Texto</div>
+          <div class="flow-desc">Prompt en lenguaje natural</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box process">Encoding<br>[CLIP]</div>
+          <div class="flow-type">Vector</div>
+          <div class="flow-desc">CLIP relaciona texto e imagen en un espacio vectorial compartido, traduciendo el prompt a números de significado.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box process">Difusión<br>+ Sampler</div>
+          <div class="flow-type">Vector | Espacio Latente</div>
+          <div class="flow-desc">El proceso genera el espacio latente: un lienzo lleno de ruido aleatorio. El sampler irá restando el ruido que le indique el predictor.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box predict">Predicción<br>[UNet / Transformer]</div>
+          <div class="flow-type">Vector</div>
+          <div class="flow-desc">El UNet/Transformer observa el ruido y predice matemáticamente cuánto ruido hay que restar para llegar a la imagen deseada.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box decode">Decoding<br>[VAE]</div>
+          <div class="flow-type">Vector</div>
+          <div class="flow-desc">Una vez limpiado el ruido, el decodificador de imagen (VAE) traduce los datos matemáticos a píxeles reales.</div>
+        </div>
+        <div class="flow-arrow-col">→</div>
+        <div class="flow-step">
+          <div class="flow-box output">OUTPUT</div>
+          <div class="flow-type">Imagen</div>
+          <div class="flow-desc">Se obtiene la imagen renderizada.<br><span style="color:var(--red)">El resultado puede generar una fake news.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-checkpoint"><strong>Checkpoint</strong> | Incluye los componentes de CLIP (codificación), modelos UNet (predicción) y VAE (decodificación).</div>
+  </div>
+
+  <!-- 4.3 DATASETS DM -->
+  <div class="block" style="background:var(--s1)">
+    <div class="block-title">Datasets - Diffusion Models</div>
+    <div class="block-lead">Los modelos de difusión aprenden de <strong style="color:var(--text)">pares imagen-texto</strong>. La fuente principal es internet. Cuando alguien sube una foto con un texto alternativo, pie de foto o descripción cercana, ese par existe. Un crawler los recopila a escala masiva. <em style="color:var(--faint)">La calidad del dataset determina las capacidades y los sesgos del modelo.</em></div>
+    <div>
+      <div class="model-row"><div class="model-label"><div class="model-name">Stable Diffusion</div><div class="model-maker">Stability AI</div></div><div class="model-body"><p>Dataset: <strong style="color:var(--text)">LAION-5B</strong> | 5.850 millones de pares imagen-texto recopilados de internet sin curaduría exhaustiva.</p><p class="model-alert">⚠ Investigaciones encontraron material de abuso sexual infantil, abriendo debates sobre responsabilidad en la curaduría a escala.</p></div></div>
+      <div class="model-row"><div class="model-label"><div class="model-name">Flux</div><div class="model-maker">Black Forest Labs</div></div><div class="model-body"><p>Dataset propietario, no divulgado. Mayor coherencia semántica que SD. Estándar actual del ecosistema open source de imagen.</p></div></div>
+    </div>
+  </div>
+
+  <!-- TÉRMINOS CLAVE -->
+  <div class="mini-glos">
+    <div class="mini-glos-label">Términos clave</div>
+    <div class="mgg">
+      <div class="mgi"><div class="mgi-term">Token</div><div class="mgi-short">Unidad mínima de texto que procesa un LLM. Las APIs se cobran por tokens.</div></div>
+      <div class="mgi"><div class="mgi-term">Embedding</div><div class="mgi-short">Vector numérico que representa el significado de una palabra. Conceptos similares tienen vectores cercanos.</div></div>
+      <div class="mgi"><div class="mgi-term">Espacio latente</div><div class="mgi-short">Representación comprimida donde el modelo opera. Puntos cercanos = conceptos relacionados.</div></div>
+      <div class="mgi"><div class="mgi-term">Transformer</div><div class="mgi-short">Arquitectura que analiza todo el contexto simultáneamente con mecanismos de atención. Google, 2017.</div></div>
+      <div class="mgi"><div class="mgi-term">Sampler</div><div class="mgi-short">Elige los tokens más probables (LLMs) o el nivel de ruido a restar (DMs). Controla la aleatoriedad del output.</div></div>
+      <div class="mgi"><div class="mgi-term">VAE</div><div class="mgi-short">Variational Autoencoder. Traduce entre el espacio latente y los píxeles en los modelos de difusión.</div></div>
+      <div class="mgi"><div class="mgi-term">UNet</div><div class="mgi-short">Red neuronal que predice cuánto ruido restar en cada paso del proceso de difusión.</div></div>
+      <div class="mgi"><div class="mgi-term">CLIP</div><div class="mgi-short">Conecta texto e imagen en el mismo espacio matemático. Condición necesaria para los modelos texto-a-imagen.</div></div>
+      <div class="mgi"><div class="mgi-term">Alucinación</div><div class="mgi-short">El LLM genera información falsa con apariencia de verdad. Característica estructural, no un bug corregible.</div></div>
+      <div class="mgi"><div class="mgi-term">Checkpoint</div><div class="mgi-short">Archivo con todos los pesos del modelo entrenado. Todo lo que la red aprendió, guardado en un archivo.</div></div>
+      <div class="mgi"><div class="mgi-term">Fine-tuning</div><div class="mgi-short">Continuar el entrenamiento con datos específicos para especializar el modelo.</div></div>
+      <div class="mgi"><div class="mgi-term">LoRA</div><div class="mgi-short">Archivos ligeros (50–200MB) que añaden estilos a un modelo base sin modificarlo.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERRAMIENTAS ══ -->
+<div id="herramientas" class="page">
+  <div class="sec-header">
+    <div class="sec-tag">Herramientas</div>
+    <h1 class="sec-title">Dónde encontramos los modelos</h1>
+    <span class="sec-title-line"></span>
+  </div>
+  <!-- PLATAFORMAS | al tope -->
+  <div class="block block-accent" style="background:var(--s1)">
+    <p class="block-lead">La elección entre plataforma privada y abierta implica decisiones sobre control, privacidad, costo y posibilidades técnicas. Cada modelo de IA tiene su propia moral y lo legal, y ambos responden a los intereses de la empresa que lo creó.</p>
+    <div class="plat-modes">
+      <div class="plat-mode m-priv"><div class="plat-mode-title" style="color:var(--blue)">● Plataformas privadas online</div><div class="plat-mode-desc">Acceso por suscripción. Sin instalación. La empresa controla el modelo y los datos.<br><br>ChatGPT, Midjourney, Runway, ElevenLabs.</div></div>
+      <div class="plat-mode m-open"><div class="plat-mode-title" style="color:var(--green)">● Descarga y ejecución local</div><div class="plat-mode-desc">Modelos open source. Requiere GPU dedicada. Cada modelo pesa 2–20GB.<br><br>Flux, SD, Llama, Whisper vía ComfyUI u Ollama.</div></div>
+      <div class="plat-mode m-int"><div class="plat-mode-title" style="color:var(--accent)">● Integrados en software</div><div class="plat-mode-desc">IA nativa en herramientas de diseño y productividad. Sin configuración técnica.<br><br>Adobe Firefly, Adobe Podcast, Descript.</div></div>
+    </div>
+    <div class="block-title" style="font-size:18px;margin-bottom:16px">Privadas vs abiertas</div>
+    <div style="overflow-x:auto;margin-bottom:28px">
+      <table class="tbl">
+        <thead><tr><th>Criterio</th><th class="h-priv">Privada / online</th><th class="h-open">Abierta / local</th></tr></thead>
+        <tbody>
+          <tr><td>Instalación</td><td>No requiere instalación</td><td>Instalación y configuración técnica</td></tr>
+          <tr><td>Costo</td><td>Suscripción o créditos</td><td>Gratuito, pero requiere hardware</td></tr>
+          <tr><td>Privacidad de datos</td><td>Datos en servidores externos</td><td>Todo ejecutable localmente</td></tr>
+          <tr><td>Control de parámetros</td><td>Opciones limitadas</td><td>Acceso completo: LoRAs, fine-tuning</td></tr>
+          <tr><td>Dependencia de internet</td><td>Requiere conexión constante</td><td>Puede funcionar offline</td></tr>
+          <tr><td>Libertad de uso</td><td>Limitada por políticas</td><td>Mayor libertad para modificar</td></tr>
+          <tr><td>Moral y alineación</td><td>Determinada por la empresa</td><td>Configurable por el usuario</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="block-title" style="font-size:18px;margin-bottom:16px">Requerimientos para instalación local</div>
+    <div class="req-grid">
+      <div class="req-item"><div class="req-label">GPU</div><div class="req-val">NVIDIA RTX 3080</div><div class="req-note">Mínimo recomendado. 8GB VRAM para modelos de difusión.</div></div>
+      <div class="req-item"><div class="req-label">VRAM</div><div class="req-val">8GB mínimo</div><div class="req-note">16GB recomendado para Flux y modelos de video.</div></div>
+      <div class="req-item"><div class="req-label">RAM</div><div class="req-val">16GB mínimo</div><div class="req-note">32GB recomendado para flujos complejos.</div></div>
+      <div class="req-item"><div class="req-label">Almacenamiento</div><div class="req-val">2 – 20GB por modelo</div><div class="req-note">Cada checkpoint ocupa este espacio en disco.</div></div>
+      <div class="req-item"><div class="req-label">Interfaces</div><div class="req-val">ComfyUI / Ollama</div><div class="req-note">ComfyUI para imagen, Ollama para LLMs locales.</div></div>
+      <div class="req-item"><div class="req-label">Repositorios</div><div class="req-val">HuggingFace / Civitai</div><div class="req-note"><a href="https://huggingface.co" target="_blank">huggingface.co</a> · <a href="https://civitai.com" target="_blank">civitai.com</a></div></div>
+    </div>
+  </div>
+
+  <!-- FILTROS + TOOLS -->
+  <div style="padding:24px 48px 16px;border-top:1px solid var(--border)">
+    <div class="sec-tag">Herramientas</div>
+  </div>
+  <div class="filter-bar">
+    <button class="fb-btn active" onclick="filterUC('all',this)">Todos</button>
+    <button class="fb-btn" onclick="filterUC('productividad',this)">LLMs</button>
+    <button class="fb-btn" onclick="filterUC('imagen',this)">Imagen</button>
+    <button class="fb-btn" onclick="filterUC('video',this)">Video</button>
+    <button class="fb-btn" onclick="filterUC('audio',this)">Audio</button>
+  </div>
+  <div class="access-bar">
+    <button class="a-btn active" onclick="filterAccess('all',this)">Todos los accesos</button>
+    <button class="a-btn" style="color:#3b82f6" onclick="filterAccess('privada',this)">● Privada</button>
+    <button class="a-btn" style="color:#00c48c" onclick="filterAccess('opensource',this)">● Open source</button>
+    <button class="a-btn" style="color:#e8622a" onclick="filterAccess('integrada',this)">● Integrada</button>
+  </div>
+  <div id="uc-sections" style="padding-top:8px"></div>
+
+  <div class="mini-glos">
+    <div class="mini-glos-label">Términos clave</div>
+    <div class="mgg">
+      <div class="mgi"><div class="mgi-term">API / Endpoint</div><div class="mgi-short">Interfaz para acceder a un modelo desde código. Permite integrar IA en aplicaciones propias.</div></div>
+      <div class="mgi"><div class="mgi-term">Open source</div><div class="mgi-short">Modelo cuyos pesos son públicos. Flux, SD, Llama, Whisper. Se puede correr localmente.</div></div>
+      <div class="mgi"><div class="mgi-term">GPU / VRAM</div><div class="mgi-short">Hardware necesario para correr modelos locales. Mínimo recomendado para difusión: NVIDIA 8GB VRAM.</div></div>
+      <div class="mgi"><div class="mgi-term">ComfyUI</div><div class="mgi-short">Interfaz visual por nodos para Flux y SD. Control total del proceso de generación.</div></div>
+      <div class="mgi"><div class="mgi-term">Prompt</div><div class="mgi-short">Instrucción en lenguaje natural. El orden y la precisión importan. Los primeros tokens tienen más peso.</div></div>
+      <div class="mgi"><div class="mgi-term">Steps / Sampler</div><div class="mgi-short">Número de pasos del proceso de difusión. Más steps = más calidad. El sampler controla la aleatoriedad.</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://iykkvndbzlzimgqdszos.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5a2t2bmRiemx6aW1ncWRzem9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1OTA2NzgsImV4cCI6MjA5NTE2NjY3OH0.ZxKBbEyiSJ8SpIclvKF4TgHeOYgD-7MUK3_2ndFFF3A';
+async function sbFetch(t){try{const r=await fetch(`${SB_URL}/rest/v1/${t}?select=*&limit=500`,{headers:{apikey:SB_KEY,Authorization:`Bearer ${SB_KEY}`},cache:'no-store'});if(!r.ok)return null;const d=await r.json();return Array.isArray(d)&&d.length?d:null;}catch(e){return null;}}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>{if(b.textContent.toLowerCase().trim()===id||(id==='welcome'&&b.textContent.toLowerCase().trim()==='inicio'))b.classList.add('active');});
+  document.querySelector('.nav-links').classList.remove('open');
+  window.scrollTo(0,0);
+}
+
+const AC={privada:'#3b82f6',opensource:'#00c48c',integrada:'#e8622a'};
+const AL={privada:'Privada',opensource:'Open source',integrada:'Integrada'};
+const MC={texto:'#3b82f6',imagen:'#a78bfa',audio:'#e8622a',video:'#f43f5e',código:'#00c48c',codigo:'#00c48c'};
+
+const TOOLS=[
+  {id:'productividad',title:'LLMs | Productividad y asistencia',filterTag:'LLMs',input:'Texto, Imágenes, Archivos, Voz',output:'Texto, Código, Análisis, Resúmenes',tools:[
+    {name:'ChatGPT',maker:'OpenAI',price:'Freemium ($20/mes)',access:'privada',desc:'El modelo más extendido. GPT-4o incluye visión, generación de imágenes, ejecución de código, navegación web y GPTs personalizados.',mod:'texto · imagen · audio · código',note:'',url:'https://chatgpt.com'},
+    {name:'Claude',maker:'Anthropic',price:'Freemium ($20/mes)',access:'privada',desc:'Especialmente bueno en textos largos, análisis y razonamiento. 200.000 tokens de contexto.',mod:'texto · imagen · código',note:'',url:'https://claude.ai'},
+    {name:'DeepSeek',maker:'DeepSeek',price:'Freemium (API económica)',access:'opensource',desc:'Alto rendimiento y relación calidad/costo excepcional. R1 especializado en razonamiento. Pesos publicados, corre localmente.',mod:'texto · código',note:'Empresa china. Disponible globalmente.',url:'https://www.deepseek.com'},
+  ]},
+  {id:'imagen',title:'Imagen | Generación',filterTag:'Imagen',input:'Texto, Imágenes de referencia, Máscaras',output:'Imágenes de alta calidad',tools:[
+    {name:'Midjourney',maker:'Midjourney Inc.',price:'De pago (Desde $10/mes)',access:'privada',desc:'El estándar de calidad estética. Muy usado en diseño, concept art, moda y producción visual.',mod:'texto · imagen',note:'',url:'https://www.midjourney.com'},
+    {name:'DALL-E 3',maker:'OpenAI',price:'Incluido en ChatGPT Plus',access:'privada',desc:'Integrado en ChatGPT. Muy bueno con instrucciones complejas y generación de texto tipográfico.',mod:'texto · imagen',note:'',url:'https://openai.com/dall-e-3'},
+    {name:'Flux',maker:'Black Forest Labs',price:'Open source (Gratis)',access:'opensource',desc:'Nueva generación open source. Mayor coherencia semántica que Stable Diffusion. Estándar actual.',mod:'texto · imagen',note:'',url:'https://blackforestlabs.ai'},
+    {name:'Stable Diffusion',maker:'Stability AI',price:'Open source (Gratis)',access:'opensource',desc:'Base del ecosistema open source: ComfyUI, Automatic1111, LoRAs y Civitai.',mod:'texto · imagen',note:'',url:'https://stability.ai'},
+    {name:'Adobe Firefly',maker:'Adobe',price:'Incluido en Creative Cloud',access:'integrada',desc:'Integrado en Photoshop e Illustrator. Generative fill, text to vector. Seguro para uso comercial.',mod:'texto · imagen',note:'',url:'https://firefly.adobe.com'},
+    {name:'Ideogram',maker:'Ideogram',price:'Freemium',access:'privada',desc:'Especialmente bueno generando texto tipográfico dentro de imágenes.',mod:'texto · imagen',note:'',url:'https://ideogram.ai'},
+  ]},
+  {id:'video',title:'Video | Generación',filterTag:'Video',input:'Texto, Imágenes, Ajustes de cámara',output:'Video HD con simulación física',tools:[
+    {name:'Runway Gen-3 Alpha',maker:'Runway',price:'De pago (Desde $15/mes)',access:'privada',desc:'El estándar de la industria audiovisual. Control fino sobre movimiento, cámara y estilo.',mod:'texto · imagen · video',note:'',url:'https://runwayml.com'},
+    {name:'Sora',maker:'OpenAI',price:'Incluido en ChatGPT Plus/Pro',access:'privada',desc:'Video hasta 20 segundos de alta calidad. Excelente coherencia temporal y simulación física.',mod:'texto · imagen · video',note:'',url:'https://openai.com/sora'},
+    {name:'Kling AI',maker:'Kuaishou',price:'Freemium',access:'privada',desc:'Alta calidad a menor costo. Muy bueno para movimientos realistas y expresiones faciales.',mod:'texto · imagen · video',note:'Empresa china. Disponible globalmente.',url:'https://kling.ai'},
+    {name:'Luma Dream Machine',maker:'Luma AI',price:'Freemium (120 gen/mes gratis)',access:'privada',desc:'Muy accesible. Bueno para movimientos de cámara realistas y para animar imágenes estáticas.',mod:'texto · imagen · video',note:'',url:'https://lumalabs.ai/dream-machine'},
+    {name:'Pika 2.0',maker:'Pika',price:'Freemium',access:'privada',desc:'Fácil de usar. Permite modificar partes específicas de un video (Pikaffects).',mod:'texto · imagen · video',note:'',url:'https://pika.art'},
+    {name:'Veo 3',maker:'Google DeepMind',price:'Incluido en Gemini Advanced',access:'privada',desc:'Modelo con generación de audio sincronizado. Alta calidad en fotorrealismo.',mod:'texto · imagen · video · audio',note:'Disponible inicialmente en EE.UU.',url:'https://deepmind.google/technologies/veo/'},
+    {name:'LTX Video',maker:'Lightricks',price:'Open source (Gratis)',access:'opensource',desc:'Modelo de video open source de alta calidad. Corre localmente.',mod:'texto · imagen · video',note:'',url:'https://huggingface.co/Lightricks/LTX-Video'},
+  ]},
+  {id:'audio',title:'Audio | Voz y música',filterTag:'Audio',input:'Texto, Voz de referencia, Melodías',output:'Voz sintetizada, Música, Transcripciones',tools:[
+    {name:'ElevenLabs',maker:'ElevenLabs',price:'Freemium (Desde $5/mes)',access:'privada',desc:'El estándar en síntesis y clonación de voz. TTS hiperrealista, clonación con pocos segundos de audio.',mod:'texto · audio',note:'',url:'https://elevenlabs.io'},
+    {name:'Suno v4',maker:'Suno',price:'Freemium ($8/mes Pro)',access:'privada',desc:'Genera canciones completas desde texto: voz, letra, melodía e instrumentación.',mod:'texto · audio',note:'',url:'https://suno.com'},
+    {name:'Udio',maker:'Udio',price:'Freemium',access:'privada',desc:'Generación musical de alta calidad. Muy bueno en jazz, clásica y electrónica.',mod:'texto · audio',note:'',url:'https://udio.com'},
+    {name:'Adobe Podcast',maker:'Adobe',price:'Gratis (Beta)',access:'integrada',desc:'Mejora automática: elimina ruido y hace sonar grabaciones domésticas como estudios profesionales.',mod:'audio',note:'',url:'https://podcast.adobe.com'},
+    {name:'Descript',maker:'Descript',price:'Freemium ($12/mes)',access:'privada',desc:'Editor de audio/video que funciona como procesador de texto. Edita sobreescribiendo la transcripción.',mod:'audio · video · texto',note:'',url:'https://descript.com'},
+    {name:'Whisper',maker:'OpenAI',price:'Open source (Gratis)',access:'opensource',desc:'Transcripción automática multiidioma de alta precisión. Corre localmente.',mod:'audio · texto',note:'',url:'https://openai.com/whisper'},
+    {name:'MusicGen',maker:'Meta',price:'Open source (Gratis)',access:'opensource',desc:'Generación de música desde texto y melodías de referencia. Corre localmente vía Hugging Face.',mod:'texto · audio',note:'',url:'https://huggingface.co/facebook/musicgen-large'},
+    {name:'Stable Audio',maker:'Stability AI',price:'Open source / Freemium',access:'opensource',desc:'Generación de audio de alta fidelidad: efectos de sonido, música ambiental y loops.',mod:'texto · audio',note:'',url:'https://stability.ai/stable-audio'},
+  ]},
+];
+
+function buildMap(data){
+  const sec=document.getElementById('uc-sections');sec.innerHTML='';
+  data.forEach(uc=>{
+    const div=document.createElement('div');div.className='uc-section';div.dataset.id=uc.id;
+    let cards='';
+    (uc.tools||[]).forEach(t=>{
+      const dot=AC[t.access]||'#888',lbl=AL[t.access]||t.access;
+      const mods=(t.modalidades||t.mod||'').split('·').map(m=>{const mm=m.trim(),c=MC[mm]||'#666';return`<span class="card-mod" style="background:${c}12;color:${c};border-color:${c}30">${mm}</span>`;}).join('');
+      cards+=`<div class="card" data-access="${t.access}">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:2px">
+          <div style="width:7px;height:7px;border-radius:50%;background:${dot};flex-shrink:0"></div>
+          <div class="card-name">${t.name}</div>
+        </div>
+        <div class="card-maker">${t.maker}</div>
+        <div class="card-badges"><span class="card-acc" style="border-color:${dot};color:${dot}">${lbl}</span><span class="card-price">${t.price}</span></div>
+        <div class="card-mods">${mods}</div>
+        <div class="card-desc">${t.desc||t.descripcion||''}</div>
+        ${(t.note||'').trim()?`<div class="card-note">⚠ ${t.note}</div>`:''}
+        ${t.url?`<a class="card-link" href="${t.url}" target="_blank">↗ Ver sitio</a>`:''}
+      </div>`;
+    });
+    div.innerHTML=`<div class="uc-header"><div class="uc-title">${uc.title||uc.usecase_title}</div><span class="uc-filter-tag">${uc.filterTag||uc.id}</span></div><div class="uc-io"><div class="io-pill"><span class="io-lbl">INPUT</span><span class="io-val">${uc.input||uc.usecase_input||''}</span></div><div class="io-pill"><span class="io-lbl">OUTPUT</span><span class="io-val">${uc.output||uc.usecase_output||''}</span></div></div><div class="cards">${cards}</div>`;
+    sec.appendChild(div);
+  });
+}
+
+let activeUC='all',activeAccess='all';
+function filterUC(id,btn){activeUC=id;document.querySelectorAll('.fb-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyFilters();}
+function filterAccess(a,btn){activeAccess=a;document.querySelectorAll('.a-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyFilters();}
+function applyFilters(){document.querySelectorAll('.uc-section').forEach(s=>{const show=activeUC==='all'||s.dataset.id===activeUC;s.classList.toggle('hidden',!show);if(show)s.querySelectorAll('.card').forEach(c=>c.classList.toggle('access-hidden',activeAccess!=='all'&&c.dataset.access!==activeAccess));});}
+
+const TL_CATS={tecnico:{label:'Técnico',color:'#3b82f6'},cultural:{label:'Cultural',color:'#f59e0b'},critico:{label:'Crítico',color:'#f43f5e'}};
+let activeTLCats=new Set(['tecnico','cultural','critico']);
+
+const TL_LINKS={
+  '1843':'https://www.computerhistory.org/babbage/adalovelace/',
+  '1936':'https://en.wikipedia.org/wiki/On_Computable_Numbers',
+  '1950':'https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence',
+  '1956':'https://en.wikipedia.org/wiki/Dartmouth_workshop',
+  '1966':'https://en.wikipedia.org/wiki/ELIZA',
+  '1989':'http://yann.lecun.com/exdb/lenet/',
+  '1997':'https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)',
+  '2009':'https://www.image-net.org',
+  '2012':'https://en.wikipedia.org/wiki/AlexNet',
+  '2013':'https://arxiv.org/abs/1301.3666',
+  '2016':'https://deepmind.google/research/alphago/',
+  '2017':'https://arxiv.org/abs/1706.03762',
+  '2021':'https://openai.com/research/clip',
+  '2022b':'https://stability.ai',
+  '2026':'https://www.vatican.va/content/leo-xiv/es/encyclicals/documents/20260515-magnifica-humanitas.html',
+};
+
+const HIST=[
+  {year:'1822',title:'Babbage | Máquinas de cálculo',cat:'tecnico',short:'Primer concepto de computadora mecánica. Memoria, procesador, entrada y salida. Nunca terminada.',full_text:'Diseña la Máquina Diferencial y luego la Analítica. La arquitectura de toda computadora moderna, en bronce.',person_name:'Charles Babbage (1791–1871)',person_bio:'Matemático e inventor británico.',url:''},
+  {year:'1843',title:'Ada Lovelace | Primer algoritmo',cat:'tecnico',short:'Ada Lovelace traduce y amplía un artículo sobre la Máquina Analítica. Propone que puede operar sobre cualquier símbolo formal, no solo números. Escribe el primer algoritmo de la historia | para calcular los números de Bernoulli | en una máquina que nunca fue construida.',full_text:'Traduce y amplía un artículo sobre la Máquina Analítica. Ve que puede operar sobre cualquier símbolo formal | no solo números.',person_name:'Ada Lovelace (1815–1852)',person_bio:'Considerada la primera programadora de la historia.',url:'https://www.computerhistory.org/babbage/adalovelace/'},
+  {year:'1921',title:'RUR | Karel Čapek',cat:'cultural',short:'Karel Čapek estrena "Rossum\'s Universal Robots" en Praga. Primera obra que usa la palabra "robot" | del checo "robota" (trabajo forzado). Las máquinas reemplazan a los humanos, se rebelan y los exterminan. El primer gran relato cultural sobre el miedo a la IA antes de que existiera como concepto.',full_text:'Estrena "Rossum\'s Universal Robots" en Praga. Las máquinas se rebelan y exterminan a los humanos. El primer gran relato cultural sobre el miedo a la IA antes de que existiera.',person_name:'Karel Čapek (1890–1938)',person_bio:'Escritor checo. Nominado al Premio Nobel de Literatura.',url:''},
+  {year:'1936',title:'Turing | On Computable Numbers',cat:'tecnico',short:'Turing publica "On Computable Numbers" resolviendo un problema de lógica pura. Propone la máquina abstracta universal: lee símbolos, sigue reglas, escribe resultados. Demuestra que para computar cualquier cosa basta con dos estados: encendido y apagado. En ese momento "computadora" era un oficio humano, generalmente una mujer calculando tablas para el ejército.',full_text:'Publica "On Computable Numbers" resolviendo un problema de lógica pura. Define la máquina abstracta universal. En ese momento "computadora" era un oficio humano, generalmente una mujer.',person_name:'Alan Turing (1912–1954)',person_bio:'Padre de la informática teórica. Descifró los códigos Enigma.',url:'https://en.wikipedia.org/wiki/On_Computable_Numbers'},
+  {year:'1937',title:'Shannon | Lógica binaria',cat:'tecnico',short:'Shannon demuestra en su tesis de maestría que los circuitos eléctricos pueden implementar operaciones lógicas booleanas. El puente entre las matemáticas abstractas y el hardware. La razón por la que toda computadora opera con encendido y apagado.',full_text:'En su tesis de maestría demuestra que los circuitos eléctricos pueden implementar operaciones lógicas. El puente entre matemáticas abstractas y hardware.',person_name:'Claude Shannon (1916–2001)',person_bio:'Padre de la teoría de la información.',url:''},
+  {year:'1942',title:'Leyes de la Robótica | Asimov',cat:'cultural',short:'Primer marco ético para máquinas. Las tres leyes. Las preguntas siguen vigentes hoy.',full_text:'Asimov formula las Tres Leyes en "Runaround". El primer intento de codificar ética en un sistema artificial. El debate sobre alineación de IA retoma exactamente estas preguntas.',person_name:'Isaac Asimov (1920–1992)',person_bio:'Escritor y bioquímico. Sus historias anticiparon décadas de debate ético.',url:''},
+  {year:'1943',title:'McCulloch & Pitts | Neurona artificial',cat:'tecnico',short:'McCulloch y Pitts publican "A Logical Calculus of the Ideas Immanent in Nervous Activity". Proponen que el cerebro puede describirse como un sistema de cómputo lógico. Una neurona se dispara o no: encendido y apagado. Es el origen conceptual directo de las redes neuronales artificiales.',full_text:'Proponen que el cerebro puede describirse como un sistema lógico. Una neurona se dispara o no. Origen directo de las redes neuronales artificiales.',person_name:'Warren McCulloch (1898–1969)',person_bio:'Neurólogo y cibernético. Tendió el puente entre neurociencia y matemáticas.',url:''},
+  {year:'1943',title:'Conferencias Macy',cat:'cultural',short:'Reuniones interdisciplinarias en Nueva York (1946–1953). Wiener, von Neumann, Mead, Bateson y otros construyen la cibernética: el estudio de sistemas de control y comunicación en animales y máquinas. La retroalimentación, la información y el control como conceptos universales. Tuvieron enorme influencia en las ciencias sociales y el diseño latinoamericano de los 60 y 70.',full_text:'Reuniones en Nueva York (1946–1953). Wiener, Mead, Bateson y otros construyen la cibernética: control, comunicación y aprendizaje como conceptos universales.',person_name:'Norbert Wiener (1894–1964)',person_bio:'Padre de la cibernética.',url:''},
+  {year:'1950',title:'Test de Turing',cat:'tecnico',short:'Turing publica "Computing Machinery and Intelligence" y propone el "Juego de imitación": si un humano no puede distinguir las respuestas de una máquina de las de otro humano en una conversación escrita, la máquina puede considerarse inteligente. Transforma la pregunta filosófica en empírica.',full_text:'Turing publica "Computing Machinery and Intelligence". El Test como criterio operacional de inteligencia. Transforma la pregunta filosófica en empírica.',person_name:'Alan Turing (1912–1954)',person_bio:'Matemático británico.',url:'https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence'},
+  {year:'1956',title:'Conferencia de Dartmouth',cat:'tecnico',short:'Nace el término IA. McCarthy declara que en veinte años las máquinas serán tan inteligentes como los humanos.',full_text:'El campo colapsa dos veces antes de renacer | 1974 y 1987. La promesa era más grande que el conocimiento.',person_name:'John McCarthy (1927–2011)',person_bio:'Premio Turing 1971.',url:'https://en.wikipedia.org/wiki/Dartmouth_workshop'},
+  {year:'1957',title:'Primera imagen digital',cat:'tecnico',short:'Una foto de un bebé se convierte en una grilla de números. Todo lo visual puede ser computado.',full_text:'Russell Kirsch escanea la primera imagen digital: 176×176 píxeles. Si una imagen es una tabla de números, una máquina puede operarla.',person_name:'Russell Kirsch (1929–2020)',person_bio:'National Bureau of Standards, EE.UU.',url:''},
+  {year:'1958',title:'Perceptron | Rosenblatt',cat:'tecnico',short:'Frank Rosenblatt presenta el Perceptron: primera red neuronal que aprende a reconocer patrones de imágenes. Los diarios dicen que en poco tiempo las máquinas pensarán. En 1969 Minsky y Papert demuestran sus limitaciones matemáticas estructurales | no puede resolver el problema XOR. Primer invierno de la IA.',full_text:'Rosenblatt construye el Perceptron. Minsky y Papert demuestran sus limitaciones en 1969. Primer invierno de la IA.',person_name:'Frank Rosenblatt (1928–1971)',person_bio:'Pionero del aprendizaje automático.',url:''},
+  {year:'1966',title:'ELIZA',cat:'cultural',short:'Weizenbaum crea ELIZA: un programa que simula ser psicoterapeuta con patrones de sustitución de texto. No comprende nada. Sin embargo su secretaria le pide privacidad para hablar con el programa. Las personas le confiesan secretos. Weizenbaum queda perturbado y escribe una crítica filosófica del campo al que pertenece.',full_text:'ELIZA simula un psicoterapeuta con sustitución de patrones. El Efecto ELIZA: atribuir comprensión donde hay estadística. Weizenbaum escribe una crítica filosófica del campo.',person_name:'Joseph Weizenbaum (1923–2008)',person_bio:'"Computer Power and Human Reason" (1976).',url:'https://en.wikipedia.org/wiki/ELIZA'},
+  {year:'1974',title:'Primer invierno de la IA',cat:'critico',short:'Las ambiciosas promesas de Dartmouth no se cumplen. El hardware es demasiado lento, los algoritmos no escalan. El informe Lighthill (1973) recomienda reducir el financiamiento. Los sistemas simbólicos | basados en reglas explícitas | fallan ante cualquier variación del mundo real. La lección que tarda en aprenderse: la inteligencia no son reglas. Son patrones estadísticos.',full_text:'Los sistemas simbólicos fallan ante la complejidad del mundo real. El financiamiento se corta.',person_name:'',person_bio:'',url:''},
+  {year:'1987',title:'Segundo invierno',cat:'critico',short:'Los sistemas expertos colapsan: frágiles, caros y sin capacidad de aprender.',full_text:'El deshielo llegará cuando converjan algoritmos, datos masivos e internet, y GPUs.',person_name:'',person_bio:'',url:''},
+  {year:'1989',title:'CNN | Yann LeCun',cat:'tecnico',short:'Yann LeCun desarrolla LeNet-5 en Bell Labs: la primera Red Neuronal Convolucional aplicada al reconocimiento de escritura a mano. Implementada comercialmente para leer cheques bancarios en EE.UU. El campo académico no lo nota: faltan datos y hardware. Lo que desbloqueará todo llegará en 2009 y 2012.',full_text:'LeCun desarrolla LeNet-5 en Bell Labs. Falta escala | datos y hardware. La convergencia llega en 2012.',person_name:'Yann LeCun (1960)',person_bio:'Director de IA en Meta. Premio Turing 2018.',url:'http://yann.lecun.com/exdb/lenet/'},
+  {year:'1997',title:'Deep Blue vence a Kasparov',cat:'cultural',short:'Primera derrota del campeón mundial frente a una máquina. Primer hito cultural masivo de la IA.',full_text:'Deep Blue no aprende | calcula millones de posiciones por segundo. El entusiasmo es real pero la lectura técnica está equivocada.',person_name:'Garry Kasparov (1963)',person_bio:'Publicó "Deep Thinking" sobre colaboración humano-máquina.',url:'https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)'},
+  {year:'2006',title:'Hinton relanza el Deep Learning',cat:'tecnico',short:'Resuelve el gradiente que desaparece. Inicia la era moderna del Deep Learning.',full_text:'Demuestra cómo entrenar redes profundas eficientemente. Premio Turing 2018. Renunció a Google en 2023 para hablar sobre los riesgos.',person_name:'Geoffrey Hinton (1947)',person_bio:'Padrino del Deep Learning.',url:''},
+  {year:'2009',title:'ImageNet',cat:'tecnico',short:'14 millones de imágenes etiquetadas a mano. El combustible que faltaba.',full_text:'Fei-Fei Li lanza ImageNet y el ILSVRC. La competencia donde el Deep Learning demostrará su superioridad en 2012.',person_name:'Fei-Fei Li (1976)',person_bio:'Stanford AI Human-Centered Lab.',url:'https://www.image-net.org'},
+  {year:'2012',title:'AlexNet',cat:'tecnico',short:'Alex Krizhevsky, Ilya Sutskever y Geoffrey Hinton presentan AlexNet. Entrenada con GPUs NVIDIA | hardware diseñado para videojuegos | gana ImageNet con un error del 15.3%. El segundo lugar tuvo 26.2%. La diferencia es de más de 10 puntos porcentuales en una competencia donde mejorar 1 punto era noticia. A partir de 2012 todos los avances en visión se basan en redes convolucionales profundas.',full_text:'Krizhevsky entrena AlexNet con GPUs de videojuegos. El Deep Learning no era nuevo | solo necesitaba escala.',person_name:'Alex Krizhevsky',person_bio:'Universidad de Toronto, bajo Hinton.',url:'https://en.wikipedia.org/wiki/AlexNet'},
+  {year:'2013',title:'Word2Vec',cat:'tecnico',short:'Rey − hombre + mujer = reina. El lenguaje entra al espacio matemático.',full_text:'Mikolov en Google: palabras como vectores donde la distancia importa. Condición necesaria para los Transformers de 2017.',person_name:'Tomas Mikolov',person_bio:'Google Brain.',url:'https://arxiv.org/abs/1301.3666'},
+  {year:'2014',title:'GANs | Goodfellow',cat:'tecnico',short:'Generador vs Discriminador. Primera arquitectura que sintetiza imágenes fotorrealistas.',full_text:'La idea nace en una conversación de bar en Montreal. Domina la generación de imagen hasta 2021.',person_name:'Ian Goodfellow (1985)',person_bio:'Uno de los papers más citados de la década.',url:''},
+  {year:'2016',title:'AlphaGo',cat:'cultural',short:'La jugada 37 fue descrita como "no humana". Primera vez que una máquina genera conocimiento nuevo.',full_text:'AlphaGo vence a Lee Sedol 4-1. El Go era considerado irreducible al cómputo.',person_name:'Lee Sedol (1983)',person_bio:'"Hay un ser que no puede ser derrotado."',url:'https://deepmind.google/research/alphago/'},
+  {year:'2017',title:'Transformers',cat:'tecnico',short:'Vaswani et al. (Google) introducen la arquitectura Transformer. En lugar de procesar el texto secuencialmente como las arquitecturas anteriores, analiza todos los tokens simultáneamente calculando cuánta "atención" debe prestar cada uno a los demás. Permite paralelizar el entrenamiento y escalar eficientemente. Base de GPT, Claude, Gemini, Llama, Stable Diffusion y Flux.',full_text:'Google publica el paper. Lee todo el contexto simultáneamente con mecanismos de atención. Base de GPT, Claude, Gemini, Llama, SD y Flux.',person_name:'',person_bio:'',url:'https://arxiv.org/abs/1706.03762'},
+  {year:'2021',title:'CLIP + DALL-E',cat:'tecnico',short:'Texto e imagen en el mismo espacio matemático. El puente que hace posible todo.',full_text:'CLIP entrenado sobre 400 millones de pares imagen-texto. Por primera vez texto e imagen hablan el mismo idioma.',person_name:'',person_bio:'',url:'https://openai.com/research/clip'},
+  {year:'2022',title:'Stable Diffusion',cat:'tecnico',short:'Open source. Cualquiera con una GPU puede generar imágenes de alta calidad.',full_text:'Stability AI publica el modelo. Desencadena el ecosistema: ComfyUI, A1111, LoRAs, Civitai.',person_name:'',person_bio:'',url:'https://stability.ai'},
+  {year:'2022',title:'ChatGPT',cat:'cultural',short:'OpenAI lanza ChatGPT el 30 de noviembre de 2022. En dos meses alcanza 100 millones de usuarios | el producto de consumo de más rápido crecimiento en la historia. Por primera vez la IA conversacional de alta calidad es accesible para cualquier persona sin conocimiento técnico. El Efecto ELIZA regresa a escala de miles de millones de personas.',full_text:'30 de noviembre de 2022. El producto de consumo de más rápido crecimiento en la historia.',person_name:'',person_bio:'',url:'https://openai.com'},
+  {year:'2024',title:'Flux + AI Act UE',cat:'critico',short:'Nuevo estándar open source. Primera regulación integral de IA a nivel global.',full_text:'Black Forest Labs publica Flux. La UE aprueba el AI Act. Proliferan deepfakes en elecciones globales.',person_name:'',person_bio:'',url:'https://artificialintelligenceact.eu'},
+  {year:'2025',title:'IA como infraestructura',cat:'cultural',short:'Video desde texto. La IA generativa deja de ser novedad y se vuelve infraestructura.',full_text:'Sora y modelos open source democratizan el video. La IA se integra en herramientas cotidianas.',person_name:'',person_bio:'',url:''},
+  {year:'2026',title:'Magnifica Humanitas',cat:'critico',short:'"La IA no puede considerarse moralmente neutra." Papa León XIV.',full_text:'Primera encíclica papal sobre IA. Firmada el 15 de mayo de 2026. Pide "desarmar" la IA para evitar que domine al ser humano.',person_name:'Papa León XIV (1955)',person_bio:'Primer papa estadounidense. Matemático de formación.',url:'https://www.vatican.va/content/leo-xiv/es/encyclicals/documents/20260515-magnifica-humanitas.html'},
+];
+
+function buildHistory(data){
+  const fil=document.getElementById('tl-filters'),track=document.getElementById('tl-track');
+  fil.innerHTML='';track.innerHTML='';
+  const allBtn=document.createElement('button');allBtn.className='tl-btn active';allBtn.textContent='Todos';
+  allBtn.onclick=()=>{activeTLCats=new Set(Object.keys(TL_CATS));fil.querySelectorAll('.tl-btn').forEach(b=>b.classList.add('active'));updateTL();};
+  fil.appendChild(allBtn);
+  Object.entries(TL_CATS).forEach(([k,v])=>{
+    const b=document.createElement('button');b.className='tl-btn active';b.textContent=v.label;
+    b.onclick=()=>{activeTLCats.has(k)?activeTLCats.delete(k):activeTLCats.add(k);b.classList.toggle('active');updateTL();};
+    fil.appendChild(b);
+  });
+  let lastCentury=null;
+  data.forEach((item,i)=>{
+    const yr=parseInt(item.year);
+    const century=yr<1900?19:yr<2000?20:21;
+    if(lastCentury&&century!==lastCentury){
+      const marker=document.createElement('div');
+      marker.style.cssText='display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:60px;z-index:2';
+      marker.innerHTML=`<div style="width:1px;height:200px;background:rgba(232,98,42,0.4)"></div><span style="font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:.15em;writing-mode:vertical-rl;transform:rotate(180deg);padding:8px 0;text-transform:uppercase">${century===20?'Siglo XX':'Siglo XXI'}</span><div style="width:1px;height:200px;background:rgba(232,98,42,0.4)"></div>`;
+      track.appendChild(marker);
+    }
+    lastCentury=century;
+
+    const cat=TL_CATS[item.cat]||TL_CATS.tecnico;
+    const el=document.createElement('div');el.className='tl-item';el.dataset.cat=item.cat;
+    const linkHtml=item.url?`<a class="tl-card-link" href="${item.url}" target="_blank">↗ Ver fuente</a>`:'';
+    const card=`<div class="tl-card"><span class="tl-cat-tag" style="border-color:${cat.color}44;color:${cat.color};background:${cat.color}10">${cat.label}</span><div class="tl-year-label">${item.year}</div><div class="tl-card-title">${item.title}</div><div class="tl-card-short">${item.short}</div>${linkHtml}</div>`;
+    const conn='<div class="tl-connector"></div>',dot='<div class="tl-dot"></div>';
+    el.innerHTML=i%2===0?card+conn+dot+conn+'<div style="height:76px"></div>':'<div style="height:76px"></div>'+conn+dot+conn+card;
+    el.onclick=e=>{if(e.target.tagName==='A')return;el.classList.toggle('open');};
+    track.appendChild(el);
+  });
+  const outer=document.getElementById('tl-outer');
+  let isDrag=false,startX=0,scrollL=0;
+  outer.addEventListener('mousedown',e=>{isDrag=true;startX=e.pageX-outer.offsetLeft;scrollL=outer.scrollLeft;});
+  outer.addEventListener('mouseleave',()=>isDrag=false);
+  outer.addEventListener('mouseup',()=>isDrag=false);
+  outer.addEventListener('mousemove',e=>{if(!isDrag)return;e.preventDefault();outer.scrollLeft=scrollL-(e.pageX-outer.offsetLeft-startX);});
+}
+function scrollTL(dir){
+  const outer=document.getElementById('tl-outer');
+  if(!outer)return;
+  outer.scrollBy({left:dir*400,behavior:'smooth'});
+}
+function updateTL(){document.querySelectorAll('.tl-item').forEach(el=>{el.style.opacity=activeTLCats.has(el.dataset.cat)?'1':'0.08';el.style.pointerEvents=activeTLCats.has(el.dataset.cat)?'auto':'none';});}
+
+buildMap(TOOLS);
+buildHistory(HIST);
+
+(async()=>{
+  try{
+    const[tools,hist]=await Promise.all([sbFetch('usecase_tools'),sbFetch('historia')]);
+    if(tools&&tools.length){
+      const groups={},order=[];
+      const allowed=['productividad','imagen','video','audio'];
+      tools.forEach(r=>{if(!allowed.includes(r.usecase_id))return;if(!groups[r.usecase_id]){groups[r.usecase_id]={id:r.usecase_id,title:r.usecase_title,filterTag:r.usecase_id,input:r.usecase_input,output:r.usecase_output,tools:[]};order.push(r.usecase_id);}groups[r.usecase_id].tools.push({name:r.name,maker:r.maker,price:r.price,access:r.access,desc:r.descripcion,mod:r.modalidades||'',note:r.note||'',url:r.url||''});});
+      if(order.length)buildMap(order.map(id=>groups[id]));
+      applyFilters();
+    }
+    if(hist&&hist.length){document.getElementById('tl-filters').innerHTML='';document.getElementById('tl-track').innerHTML='';buildHistory(hist);}
+  }catch(e){console.warn('Supabase:',e);}
+})();
+
+// Back to top
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('back-top');
+  if(btn)btn.classList.toggle('visible',window.scrollY>400);
+});
+
+// Zoom via buttons only
+
+// Keyword search — click mgi term to highlight & scroll to first mention
+document.addEventListener('click',e=>{
+  const mgi=e.target.closest('.mgi');
+  if(!mgi)return;
+  const termEl=mgi.querySelector('.mgi-term');
+  if(!termEl)return;
+  const rawTerm=termEl.textContent.trim();const term=rawTerm.split(/[|-]/)[0].trim().toLowerCase();
+  // Remove previous highlights
+  document.querySelectorAll('.search-highlight').forEach(el=>{
+    el.classList.remove('search-highlight');
+    el.style.removeProperty('background');
+    el.style.removeProperty('outline');
+  });
+  // Find active page
+  const activePage=document.querySelector('.page.active');
+  if(!activePage)return;
+  // Search all text-containing elements (skip the mini glos itself)
+  const candidates=activePage.querySelectorAll('p,li,.block-title,.fc-title,.fund-card-title,.flow-desc,.fund-flow-title,.uc-title,.card-desc,.card-name,.fund-vs-title,.tl-card-title,.tl-card-short,.mgi-term,.mgi-short,.block-lead,h1,h2,h3');
+  let found=null;
+  for(const el of candidates){
+    if(el.closest('.mini-glos'))continue;
+    const txt=el.textContent.toLowerCase();if(txt.includes(term)||txt.includes(rawTerm.toLowerCase())){
+      found=el;
+      break;
+    }
+  }
+  if(found){
+    found.classList.add('search-highlight');
+    found.style.background='rgba(232,98,42,.25)';
+    found.style.outline='2px solid #e8622a';
+    found.style.borderRadius='2px';
+    found.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>{
+      found.style.removeProperty('background');
+      found.style.removeProperty('outline');
+      found.style.removeProperty('border-radius');
+    },3000);
+  }
+});
+
+
+
+</script>
+
+<button class="back-top" id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
+
+</body>
+</html>
