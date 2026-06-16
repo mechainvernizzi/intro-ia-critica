@@ -312,6 +312,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     <button class="nav-btn active" onclick="showPage('welcome')">Inicio</button>
     <button class="nav-btn" onclick="showPage('historia')">Historia</button>
     <button class="nav-btn" onclick="showPage('fundamentos')">Fundamentos</button>
+    <button class="nav-btn" onclick="showPage('prompt')">Prompt</button>
     <button class="nav-btn" onclick="showPage('herramientas')">Herramientas</button>
   </div>
 </nav>
@@ -326,7 +327,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
   <div class="w-nav">
     <div class="wni" onclick="showPage('historia')"><div class="wni-num">01</div><div class="wni-title">Historia</div><div class="wni-desc">Línea de tiempo de hitos técnicos y culturales desde 1822.</div><span class="wni-arrow">→</span></div>
     <div class="wni" onclick="showPage('fundamentos')"><div class="wni-num">02</div><div class="wni-title">Fundamentos</div><div class="wni-desc">Cómo funcionan los modelos de imagen, video y lenguaje.</div><span class="wni-arrow">→</span></div>
-    <div class="wni" onclick="showPage('herramientas')"><div class="wni-num">03</div><div class="wni-title">Herramientas</div><div class="wni-desc">Ecosistema actual: LLMs, imagen, video y audio.</div><span class="wni-arrow">→</span></div>
+    <div class="wni" onclick="showPage('prompt')"><div class="wni-num">03</div><div class="wni-title">Prompt</div><div class="wni-desc">Cómo escribir prompts para imagen y para LLMs, y por qué no son lo mismo.</div><span class="wni-arrow">→</span></div>
+    <div class="wni" onclick="showPage('herramientas')"><div class="wni-num">04</div><div class="wni-title">Herramientas</div><div class="wni-desc">Ecosistema actual: LLMs, imagen, video y audio.</div><span class="wni-arrow">→</span></div>
   </div>
   <div style="padding:20px 48px;border-top:1px solid var(--border);background:var(--void)">
     <p style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-align:center;line-height:1.8">
@@ -805,6 +807,178 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
       <div class="mgi"><div class="mgi-term">Checkpoint</div><div class="mgi-short">Archivo con todos los pesos del modelo entrenado. Todo lo que la red aprendió, guardado en un archivo.</div></div>
       <div class="mgi"><div class="mgi-term">Fine-tuning</div><div class="mgi-short">Continuar el entrenamiento con datos específicos para especializar el modelo.</div></div>
       <div class="mgi"><div class="mgi-term">LoRA</div><div class="mgi-short">Archivos ligeros (50–200MB) que añaden estilos a un modelo base sin modificarlo.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROMPT ══ -->
+<div id="prompt" class="page">
+  <div class="sec-header">
+    <div class="sec-tag">Prompt</div>
+    <h1 class="sec-title">Prompt</h1>
+    <span class="sec-title-line"></span>
+  </div>
+
+  <div style="padding:28px 48px 0;background:var(--void)">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue)"></span>LLM · Texto
+    </div>
+  </div>
+
+  <!-- LLM intro -->
+  <div class="block" style="background:var(--void);border-top:3px solid rgba(59,130,246,.45)">
+    <div class="block-lead" style="margin-bottom:0">
+      En los LLMs el lenguaje natural es la interfaz principal: no hay parámetros para configurar.<br><br>
+      Lo que importa es la estructura, el contexto y la precisión de lo que se pide.<br><br>
+      La mayoría de los errores de resultado no son fallas del modelo: son fallas del prompt.<br><br>
+      Un modelo bien prompteado produce resultados radicalmente mejores que el mismo modelo con un prompt simple.
+    </div>
+  </div>
+
+  <!-- bullets buenas practicas -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(59,130,246,.45)">
+    <ul style="list-style:disc;color:var(--dim);font-size:15px;line-height:1.85;padding-left:20px;margin:0">
+      <li><strong style="color:var(--text)">Ser específico</strong> es mejor siempre que ser general.</li>
+      <li><strong style="color:var(--text)">Dar contexto mejora el resultado.</strong> El modelo no sabe quién sos ni para qué usás lo que genera. Cuanto más contexto relevante, mejor responde.</li>
+      <li><strong style="color:var(--text)">Definir el formato deseado.</strong></li>
+      <li><strong style="color:var(--text)">Indicar el rol o perspectiva.</strong></li>
+      <li><strong style="color:var(--text)">Iterar.</strong> El primer prompt rara vez es el mejor.</li>
+    </ul>
+  </div>
+
+  <!-- conversacion + tokens -->
+  <div class="block" style="background:var(--void);border-top:3px solid rgba(59,130,246,.45)">
+    <div class="block-title" style="font-size:clamp(20px,2.5vw,28px);color:var(--blue)">La conversación es la herramienta</div>
+    <div class="block-lead">se puede pedir que reformule, que amplíe, que cambie el tono, que simplifique, corregirle.</div>
+    <div class="block-title" style="font-size:clamp(20px,2.5vw,28px);margin-top:24px;color:var(--blue)">Un LLM no lee palabras: lee tokens.</div>
+    <div class="block-lead">Un token es un fragmento de texto que puede ser una palabra completa, parte de una palabra, un signo de puntuación o un espacio.</div>
+    <ul style="list-style:disc;color:var(--dim);font-size:15px;line-height:1.85;padding-left:20px;margin:0">
+      <li>Los modelos tienen un <strong style="color:var(--text)">límite de tokens por conversación</strong> (ventana de contexto). Cuando se supera ese límite, el modelo empieza a "olvidar" lo que se dijo al principio.</li>
+      <li><strong style="color:var(--text)">El costo de uso de APIs se mide en tokens</strong>: cuántos se reciben y cuántos se generan.</li>
+      <li>Los tokens se consumen tanto en el codificación del texto de entrada como en la decodificación al texto de salida.</li>
+    </ul>
+  </div>
+
+  <!-- alucinacion -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(59,130,246,.45)">
+    <div class="block-title" style="font-size:clamp(20px,2.5vw,28px);color:var(--blue)">Alucinación y límites</div>
+    <div class="block-lead" style="margin-bottom:0"><strong style="color:var(--red)">Verificar siempre</strong> los LLMs pueden alucinar con confianza. Fechas, citas, nombres, estadísticas, referencias bibliográficas: siempre verificar antes de usar.<br><br>Esto no es una falla ocasional sino una característica estructural de cómo funcionan estos modelos.</div>
+  </div>
+
+  <!-- rol+tarea+contexto+formato+restricciones -->
+  <div class="block" style="background:var(--void);border-top:3px solid rgba(59,130,246,.45)">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div><span style="font-family:var(--serif);font-size:clamp(30px,5vw,46px);font-weight:800;color:var(--text);line-height:1">rol</span><div class="fc-text" style="margin-top:6px">define desde dónde debe responder el modelo.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(26px,4.4vw,40px);font-weight:800;color:var(--dim);line-height:1">+ tarea</span><div class="fc-text" style="margin-top:6px">qué tiene que hacer. Un verbo claro: analizá, resumí, compará, etc.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(24px,3.9vw,35px);font-weight:800;color:var(--dim);line-height:1">+ contexto</span><div class="fc-text" style="margin-top:6px">información de fondo. ¿Para quién es? ¿Con qué objetivo?</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(22px,3.5vw,31px);font-weight:800;color:var(--dim);line-height:1">+ formato</span><div class="fc-text" style="margin-top:6px">tipo de respuesta: lista, tabla, formalidad, extensión, etc.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(20px,3vw,27px);font-weight:800;color:var(--dim);line-height:1">+ restricciones</span><div class="fc-text" style="margin-top:6px">qué no debe hacer o incluir.</div></div>
+    </div>
+  </div>
+
+  <!-- estrategias de conversacion -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(59,130,246,.45)">
+    <div class="block-title" style="color:var(--blue)">Estrategias de conversación</div>
+    <div class="fund-grid">
+      <div class="fc"><div class="fc-title">Roleplay y contexto</div><div class="fc-text">Definirle quién es, qué tiene que hacer, su tono. Indicar contexto, darle un objetivo, especificar un formato de respuesta. Decirle también lo que NO tiene que hacer.</div></div>
+      <div class="fc"><div class="fc-title">Chain of thought (cadena de pensamiento)</div><div class="fc-text">Pedirle al modelo que razone paso a paso antes de dar una respuesta mejora significativamente la calidad en tareas complejas. Frases como "pensá paso a paso" o "antes de responder, identificá los supuestos implícitos" fuerzan cadenas de pensamiento.</div></div>
+      <div class="fc"><div class="fc-title">Few-shot prompting</div><div class="fc-text">Dar ejemplos de lo que se espera antes de hacer el pedido. En lugar de describir el formato deseado, mostrárselo: "Acá hay dos ejemplos del estilo que busco... ahora generame uno similar sobre X".</div></div>
+      <div class="fc"><div class="fc-title">Ventana de contexto</div><div class="fc-text">Cada LLM tiene un límite de tokens que puede procesar en una conversación, llamado ventana de contexto. Cuando la conversación es muy larga, el modelo puede "olvidar" lo que se dijo al principio. Para tareas largas conviene empezar una conversación nueva con el contexto relevante resumido.</div></div>
+      <div class="fc"><div class="fc-title">Compartir archivos y links como fuentes</div><div class="fc-text">Incluir archivos de texto, imágenes y links permite contextualizar y focalizar en determinada información.</div></div>
+      <div class="fc"><div class="fc-title">Deep research</div><div class="fc-text">Algunos LLMs ofrecen modos de investigación profunda, tomándose más tiempo para investigar antes de responder.</div></div>
+      <div class="fc"><div class="fc-title">Nivel de pensamiento</div><div class="fc-text">Distintos planes de pago permiten acceder a modelos de niveles de "pensamiento" elevados capaces de resolver con precisión problemas matemáticos y físicos complejos.</div></div>
+    </div>
+  </div>
+
+  <!-- banner -->
+  <div class="block block-accent" style="background:var(--void)">
+    <div style="font-family:var(--serif);font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.2;color:var(--red)">Promptear un modelo de lenguaje<br>es diferente a promptear un modelo de imagen.</div>
+  </div>
+
+  <div style="padding:28px 48px 0;background:var(--s1)">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:10px">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 8px var(--purple)"></span>Imagen · Difusión
+    </div>
+  </div>
+
+  <!-- imagen intro -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(167,139,250,.45)">
+    <div class="block-lead" style="margin-bottom:0">
+      ¿Cómo nos comunicamos con un modelo generativo de imágenes?<br><br>
+      Aquí el <strong style="color:var(--text)">prompt</strong> es una instrucción estructurada de texto.<br><br>
+      La clave para una comunicación exitosa con los sistemas de IA reside en la elaboración de un prompt <strong style="color:var(--text)">bien estructurado</strong>.<br><br>
+      En su construcción es clave el <strong style="color:var(--text)">orden</strong> en los que se escriben los bloques: los primeros tendrán más peso y por ende son los que definirán nuestro pedido.<br><br>
+      Cada <strong style="color:var(--text)">palabra clave</strong> que escribamos tiene asociaciones no deseadas que tenemos que descubrir.<br><br>
+      Debe ser <strong style="color:var(--text)">detallado</strong> y específico.
+    </div>
+  </div>
+
+  <!-- parametros para esculpir la imagen -->
+  <div class="block" style="background:var(--void);border-top:3px solid rgba(167,139,250,.45)">
+    <div class="block-title" style="color:var(--purple)">Parámetros para esculpir la imagen</div>
+    <div class="fund-grid">
+      <div class="fc"><div class="fc-title">Seed [semilla]</div><div class="fc-text">Valor aleatorio a partir del que se genera el ruido inicial del espacio latente y, por lo tanto, la composición general de la imagen. <strong style="color:var(--text)">Establecerlo en -1 lo hace aleatorio, para consistencia fijar en cualquier otro valor.</strong></div></div>
+      <div class="fc"><div class="fc-title">CFG [nivel de obediencia]</div><div class="fc-text">Classifier-Free Guidance es el parámetro más conversacional, ya que controla cuánto debe respetar el prompt.<br>muy bajo: ignora el prompt · bajo: muy creativo · <strong style="color:var(--text)">medio: equilibrio entre creatividad y prompt</strong> · alto: adhiere más al prompt · muy alto: sigue estrictamente el prompt.<br>Evitar extremos: si es muy alto se sobresatura y quema la imagen por sobre-obedecer, mientras que si es muy bajo hace cualquier cosa.</div></div>
+      <div class="fc"><div class="fc-title">Sampler</div><div class="fc-text">Cada sampler implementa un método distinto de eliminar el ruido.<br>· Euler A [rápido y más contrastado]<br>· DPM++ 2M Karras [más suave y detallado]<br>· DDIM [recomendado para img2img]</div></div>
+      <div class="fc"><div class="fc-title">Steps [pasos de muestreo]</div><div class="fc-text">Cada paso de muestreo revisa y refina la imagen, con demasiados se sobreprocesa y la imagen ya no cambia. <strong style="color:var(--text)">Recomendación general: 20-30 pasos.</strong> El número de pasos "adecuado" depende del Sampler elegido.</div></div>
+      <div class="fc"><div class="fc-title">Denoising strength [reducción de ruido]</div><div class="fc-text">Cuando se trabaja a partir de otra imagen (img2img, inpaint, etc), es el nivel de ruido extra que le agrega a la imagen de entrada.<br>0.0 El modelo no añade ruido.<br>0.5 Modifica detalles medianos.<br>1.0 Borra por completo la imagen base.</div></div>
+    </div>
+  </div>
+
+  <!-- tipo de contenido + descripcion + estilo + composicion + prompt negativo -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(167,139,250,.45)">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div><span style="font-family:var(--serif);font-size:clamp(24px,4.4vw,38px);font-weight:800;color:var(--text);line-height:1">tipo de contenido</span><div class="fc-text" style="margin-top:6px">qué tipo de output queremos, una foto, dibujo, renderizado 3D, etc.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(22px,3.8vw,33px);font-weight:800;color:var(--dim);line-height:1">+ descripción</span><div class="fc-text" style="margin-top:6px">sujeto, atributos y contexto. Cuanto más descriptivo, más preciso.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(21px,3.4vw,30px);font-weight:800;color:var(--dim);line-height:1">+ estilo</span><div class="fc-text" style="margin-top:6px">está conformado por luces, estilos o técnicas artísticas.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(20px,3.2vw,28px);font-weight:800;color:var(--dim);line-height:1">+ composición</span><div class="fc-text" style="margin-top:6px">la imagen en relación a la posición de la cámara y el tipo de lente.</div></div>
+      <div><span style="font-family:var(--serif);font-size:clamp(19px,2.9vw,25px);font-weight:800;color:var(--dim);line-height:1">+ prompt negativo</span><div class="fc-text" style="margin-top:6px">lo que no queremos ver.</div></div>
+    </div>
+  </div>
+
+  <!-- modelando el caos -->
+  <div class="block" style="background:var(--void);border-top:3px solid rgba(167,139,250,.45)">
+    <div class="block-title" style="color:var(--purple)">Modelando el caos</div>
+    <div class="fund-grid">
+      <div class="fc"><div class="fc-title">Prompts negativos</div><div class="fc-text">Indispensables en difusión. Indicar activamente al modelo lo que no queremos agiliza lograr los resultados.</div></div>
+      <div class="fc"><div class="fc-title">Prompt engineering</div><div class="fc-text">Diseño y optimización de prompts.<br>LLM como ingeniero de prompt para modelos de difusión.</div></div>
+      <div class="fc full"><div class="fc-title">Modificadores del Prompt</div><div class="fc-text">Aprendidos por el modelo al ser tags de las imágenes con las que fue entrenado. Incluirlos en el prompt permite controlar variables de composición y estilo de la imagen.</div></div>
+      <div class="fc"><div class="fc-title">Técnica / medio / soporte <span style="color:var(--faint);font-size:12px">[estilo]</span></div><div class="fc-text">Digital art, digital painting, character design, concept art, oil painting, Unreal engine, octane render, bokeh, vray, houdini render, macro photography, analog photo, polaroid, 100mm, film photography, dslr, cinema4d, studio quality, blender.</div></div>
+      <div class="fc"><div class="fc-title">Nivel de detalle <span style="color:var(--faint);font-size:12px">[estilo]</span></div><div class="fc-text">sharp focus, hyperrealism, insanely detailed, lush detail, perfectionism, 4k uhd, HQ, masterpiece, breathtaking, intricate details, textured fabric.</div></div>
+      <div class="fc"><div class="fc-title">Colores <span style="color:var(--faint);font-size:12px">[estilo]</span></div><div class="fc-text">vibrant, muted colors, vivid color, post-processing, colorgrading, tone mapping, lush, low contrast, vintage, aesthetic, psychedelic.</div></div>
+      <div class="fc"><div class="fc-title">Iluminación <span style="color:var(--faint);font-size:12px">[estilo]</span></div><div class="fc-text">volumetric lighting, rim lighting, chiaroscuro, golden hour, neon glow, harsh midday sun, cinematic lighting, bioluminescent details, glowing.</div></div>
+      <div class="fc"><div class="fc-title">Cámara y lentes <span style="color:var(--faint);font-size:12px">[composición]</span></div><div class="fc-text">Sony a6500, Sony a7 II, Fujifilm XT3, Canon Eos 5D, Samyang 85 mm F1.4 Fe E.</div></div>
+      <div class="fc"><div class="fc-title">Planos y ángulos de cámara <span style="color:var(--faint);font-size:12px">[composición]</span></div><div class="fc-text">dutch angle, low-angle shot, overhead shot / drone photography, wide-angle.</div></div>
+    </div>
+  </div>
+
+  <!-- bitacora / pesos / img2img / inpaint / loras / controlnet -->
+  <div class="block" style="background:var(--s1);border-top:3px solid rgba(167,139,250,.45)">
+    <div class="fund-grid">
+      <div class="fc"><div class="fc-title">Bitácora</div><div class="fc-text">Registrar prompts y parámetros, guardarlos como texto. Si se mantienen todos los valores, se puede reproducir el mismo resultado.</div></div>
+      <div class="fc"><div class="fc-title">Pesos [keyword weight]</div><div class="fc-text">Podemos asignar pesos y jerarquizar las palabras para forzar que tengan más relevancia en la imagen final.<br>(keyword) aumenta &nbsp;&nbsp; [keyword] disminuye</div></div>
+      <div class="fc"><div class="fc-title">img2img</div><div class="fc-text">Utilizar como input una imagen para transferir estilo, sujeto, etc.</div></div>
+      <div class="fc"><div class="fc-title">inpaint / outpaint</div><div class="fc-text">Enmascarar regiones de píxeles para preservarlas o reemplazarlas.</div></div>
+      <div class="fc"><div class="fc-title">LoRAs</div><div class="fc-text">A partir de un dataset de imágenes se pueden generar modificadores que se acoplan al modelo base para inyectarle un estilo, personaje o dirección de arte exacto sin alterar todo el modelo. Ideales para mantener una imagen consistente a lo largo de distintas iteraciones.</div></div>
+      <div class="fc"><div class="fc-title">ControlNet</div><div class="fc-text">Permite guiar la composición de la imagen mediante mapas de profundidad, detección de bordes (Canny) o la pose exacta de un esqueleto humano (OpenPose).</div></div>
+    </div>
+  </div>
+
+  <div class="mini-glos">
+    <div class="mini-glos-label">Términos clave</div>
+    <div class="mgg">
+      <div class="mgi"><div class="mgi-term">Token</div><div class="mgi-short">Fragmento de texto que puede ser una palabra completa, parte de una palabra, un signo de puntuación o un espacio.</div></div>
+      <div class="mgi"><div class="mgi-term">Ventana de contexto</div><div class="mgi-short">Límite de tokens que un LLM puede procesar en una conversación. Al superarlo, el modelo empieza a "olvidar" el principio.</div></div>
+      <div class="mgi"><div class="mgi-term">Chain of thought</div><div class="mgi-short">Pedirle al modelo que razone paso a paso antes de dar la respuesta final.</div></div>
+      <div class="mgi"><div class="mgi-term">Few-shot prompting</div><div class="mgi-short">Mostrar ejemplos del resultado esperado en lugar de solo describirlo.</div></div>
+      <div class="mgi"><div class="mgi-term">Seed [semilla]</div><div class="mgi-short">Valor aleatorio que genera el ruido inicial y determina la composición general de la imagen.</div></div>
+      <div class="mgi"><div class="mgi-term">CFG [nivel de obediencia]</div><div class="mgi-short">Classifier-Free Guidance. Controla cuánto debe respetar el modelo el prompt.</div></div>
+      <div class="mgi"><div class="mgi-term">Sampler</div><div class="mgi-short">Método que implementa cada paso para eliminar el ruido de la imagen.</div></div>
+      <div class="mgi"><div class="mgi-term">Denoising strength</div><div class="mgi-short">Nivel de ruido extra que se agrega a una imagen de entrada en img2img o inpaint.</div></div>
+      <div class="mgi"><div class="mgi-term">Prompt negativo</div><div class="mgi-short">Lo que se le indica activamente al modelo de imagen que no debe incluir en el resultado.</div></div>
+      <div class="mgi"><div class="mgi-term">Pesos [keyword weight]</div><div class="mgi-short">Sintaxis para jerarquizar palabras: (keyword) aumenta su peso, [keyword] lo disminuye.</div></div>
+      <div class="mgi"><div class="mgi-term">LoRAs</div><div class="mgi-short">Modificadores ligeros que se acoplan a un modelo base para inyectar un estilo o personaje sin alterarlo.</div></div>
+      <div class="mgi"><div class="mgi-term">ControlNet</div><div class="mgi-short">Permite guiar la composición de la imagen mediante mapas de profundidad, bordes o pose.</div></div>
     </div>
   </div>
 </div>
