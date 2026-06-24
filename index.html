@@ -738,7 +738,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
   <!-- 4.2 CÓMO FUNCIONA: DM -->
   <div class="block" style="background:var(--s2)">
     <div style="font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px"><span style="width:20px;height:1px;background:var(--accent);display:inline-block"></span>Cómo funcionan los modelos</div><div class="block-title" style="font-size:clamp(26px,4vw,42px)">Diffusion Model</div>
-    <div class="block-lead">Los modelos de difusión generan imágenes a partir de ruido. Responden a un prompt, generando una imagen con cierta estructura diferente al lenguaje natural. <strong style="color:var(--text)">El resultado es evaluado visualmente</strong>, siendo más sencillo darle por válido o no. Si es muy verosímil, en otro contexto puede producir fake news | es importante poder identificar las imágenes generadas con IA.</div>
+    <div class="block-lead">Los modelos de difusión generan imágenes a partir de ruido. Responden a un prompt, generando una imagen con cierta estructura diferente al lenguaje natural.</div>
     <div class="flow-wrap">
       <div class="flow-track">
         <div class="flow-step">
@@ -781,12 +781,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     <div class="flow-checkpoint"><strong>Checkpoint</strong> | Incluye los componentes de CLIP (codificación), modelos UNet (predicción) y VAE (decodificación).</div>
   </div>
 
+  <!-- 4.25 NUEVAS ARQUITECTURAS -->
+  <div class="block" style="background:var(--void)">
+    <div class="block-lead" style="margin-bottom:0">La arquitectura UNet + CLIP + VAE descripta arriba corresponde a la generación original de modelos de difusión.<br><br>Los modelos actuales trabajan con estructuras distintas.<br><br>La más extendida es el <strong style="color:var(--text)">Diffusion Transformer (DiT)</strong>, que reemplaza la UNet por un Transformer — la misma arquitectura base de los LLMs — logrando mayor coherencia semántica y escalabilidad.<br><br>FLUX e Ideogram 4.0 son ejemplos de esta nueva generación.</div>
+  </div>
+
   <!-- 4.3 DATASETS DM -->
   <div class="block" style="background:var(--s1)">
     <div class="block-title">Datasets - Diffusion Models</div>
-    <div class="block-lead">Los modelos de difusión aprenden de <strong style="color:var(--text)">pares imagen-texto</strong>. La fuente principal es internet. Cuando alguien sube una foto con un texto alternativo, pie de foto o descripción cercana, ese par existe. Un crawler los recopila a escala masiva. <em style="color:var(--faint)">La calidad del dataset determina las capacidades y los sesgos del modelo.</em></div>
+    <div class="block-lead">Los datasets varían según el modelo: algunos son públicos, la mayoría son propietarios y no divulgados.<br><br><em style="color:var(--faint)">La calidad del dataset determina las capacidades y los sesgos del modelo.</em></div>
     <div>
-      <div class="model-row"><div class="model-label"><div class="model-name">Stable Diffusion</div><div class="model-maker">Stability AI</div></div><div class="model-body"><p>Dataset: <strong style="color:var(--text)">LAION-5B</strong> | 5.850 millones de pares imagen-texto recopilados de internet sin curaduría exhaustiva.</p><p class="model-alert">⚠ Investigaciones encontraron material de abuso sexual infantil, abriendo debates sobre responsabilidad en la curaduría a escala.</p></div></div>
+      <div class="model-row"><div class="model-label"><div class="model-name">Stable Diffusion</div><div class="model-maker">Stability AI</div></div><div class="model-body"><p>Dataset: <strong style="color:var(--text)">LAION-5B</strong> | 5.850 millones de pares imagen-texto extraídos de la web por Common Crawl vía atributos <code>alt-text</code>, sin consentimiento de los creadores originales.</p><p class="model-alert">⚠ Investigaciones encontraron material de abuso sexual infantil, abriendo debates sobre responsabilidad en la curaduría a escala.</p></div></div>
       <div class="model-row"><div class="model-label"><div class="model-name">Flux</div><div class="model-maker">Black Forest Labs</div></div><div class="model-body"><p>Dataset propietario, no divulgado. Mayor coherencia semántica que SD. Estándar actual del ecosistema open source de imagen.</p></div></div>
     </div>
   </div>
@@ -819,19 +824,35 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     <span class="sec-title-line"></span>
   </div>
 
-  <div style="padding:28px 48px 0;background:var(--void)">
-    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue)"></span>LLM · Texto
+  <!-- frase inaugural + cajas de navegación -->
+  <div class="block" style="background:var(--void)">
+    <div style="font-family:var(--serif);font-size:clamp(18px,2.8vw,26px);font-weight:700;color:var(--text);line-height:1.3;margin-bottom:32px">Promptear un modelo de lenguaje<br>es diferente a promptear un modelo de imagen.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)">
+      <div onclick="document.getElementById('prompt-llm').scrollIntoView({behavior:'smooth'})" style="background:var(--s1);padding:28px 32px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:20px;height:1px;background:var(--blue);display:inline-block"></span>LLM · Texto</div>
+        <div style="font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);font-weight:800;color:var(--text);line-height:1.1;margin-bottom:10px">Lenguaje natural</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.6">Estructura, contexto, rol, estrategias de conversación.</div>
+        <div style="margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--blue)">→ ir a LLM</div>
+      </div>
+      <div onclick="document.getElementById('prompt-imagen').scrollIntoView({behavior:'smooth'})" style="background:var(--s1);padding:28px 32px;cursor:pointer;transition:background .2s;position:relative;overflow:hidden" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:8px;margin-bottom:14px"><span style="width:20px;height:1px;background:var(--purple);display:inline-block"></span>Imagen · Difusión</div>
+        <div style="font-family:var(--serif);font-size:clamp(20px,2.5vw,26px);font-weight:800;color:var(--text);line-height:1.1;margin-bottom:10px">Instrucción estructurada</div>
+        <div style="font-size:13px;color:var(--dim);line-height:1.6">Parámetros, modificadores, LoRAs, ControlNet.</div>
+        <div style="margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--purple)">→ ir a Imagen</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="prompt-llm" style="padding:28px 48px 0;background:var(--void)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:8px">
+      <span style="width:24px;height:1px;background:var(--blue);display:inline-block"></span>LLM · Texto
     </div>
   </div>
 
   <!-- LLM intro -->
   <div class="block" style="background:var(--void);border-top:3px solid rgba(59,130,246,.45)">
     <div class="block-lead" style="margin-bottom:0">
-      En los LLMs el lenguaje natural es la interfaz principal: no hay parámetros para configurar.<br><br>
-      Lo que importa es la estructura, el contexto y la precisión de lo que se pide.<br><br>
-      La mayoría de los errores de resultado no son fallas del modelo: son fallas del prompt.<br><br>
-      Un modelo bien prompteado produce resultados radicalmente mejores que el mismo modelo con un prompt simple.
+      En los LLMs el lenguaje natural es la interfaz principal: no hay parámetros para configurar.
     </div>
   </div>
 
@@ -846,10 +867,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     </ul>
   </div>
 
-  <!-- conversacion + tokens -->
+  <!-- tokens -->
   <div class="block" style="background:var(--void);border-top:3px solid rgba(59,130,246,.45)">
-    <div class="block-title" style="font-size:clamp(20px,2.5vw,28px);color:var(--blue)">La conversación es la herramienta</div>
-    <div class="block-lead">se puede pedir que reformule, que amplíe, que cambie el tono, que simplifique, corregirle.</div>
     <div class="block-title" style="font-size:clamp(20px,2.5vw,28px);margin-top:24px;color:var(--blue)">Un LLM no lee palabras: lee tokens.</div>
     <div class="block-lead">Un token es un fragmento de texto que puede ser una palabra completa, parte de una palabra, un signo de puntuación o un espacio.</div>
     <ul style="list-style:disc;color:var(--dim);font-size:15px;line-height:1.85;padding-left:20px;margin:0">
@@ -890,15 +909,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
     </div>
   </div>
 
-  <!-- banner -->
-  <div class="block block-accent" style="background:var(--void)">
-    <div style="font-family:var(--serif);font-size:clamp(24px,4vw,40px);font-weight:800;line-height:1.2;color:var(--red)">Promptear un modelo de lenguaje<br>es diferente a promptear un modelo de imagen.</div>
-  </div>
-
-  <div style="padding:28px 48px 0;background:var(--s1)">
-    <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:10px">
-      <span style="width:8px;height:8px;border-radius:50%;background:var(--purple);box-shadow:0 0 8px var(--purple)"></span>Imagen · Difusión
-    </div>
+  <!-- separador LLM → Imagen -->
+  <div id="prompt-imagen" style="padding:56px 48px 40px;background:var(--void);border-top:1px solid var(--border);border-bottom:2px solid rgba(167,139,250,.35)">
+    <div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:20px;display:flex;align-items:center;gap:8px"><span style="width:24px;height:1px;background:var(--faint);display:inline-block"></span>LLM · Texto</div>
+    <div style="font-family:var(--serif);font-size:clamp(22px,3.5vw,36px);font-weight:800;line-height:1.2;color:var(--text)">Promptear un modelo de lenguaje<br>es diferente a promptear un modelo de imagen.</div>
+    <div style="margin-top:20px;font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--purple);display:flex;align-items:center;gap:8px"><span style="width:24px;height:1px;background:var(--purple);display:inline-block"></span>Imagen · Difusión</div>
   </div>
 
   <!-- imagen intro -->
@@ -1081,21 +1096,23 @@ const TOOLS=[
     {name:'DeepSeek',maker:'DeepSeek',price:'Freemium (API económica)',access:'opensource',desc:'Alto rendimiento y relación calidad/costo excepcional. R1 especializado en razonamiento. Pesos publicados, corre localmente.',mod:'texto · código',note:'Empresa china. Disponible globalmente.',url:'https://www.deepseek.com'},
   ]},
   {id:'imagen',title:'Imagen | Generación',filterTag:'Imagen',input:'Texto, Imágenes de referencia, Máscaras',output:'Imágenes de alta calidad',tools:[
-    {name:'Midjourney',maker:'Midjourney Inc.',price:'De pago (Desde $10/mes)',access:'privada',desc:'El estándar de calidad estética. Muy usado en diseño, concept art, moda y producción visual.',mod:'texto · imagen',note:'',url:'https://www.midjourney.com'},
-    {name:'DALL-E 3',maker:'OpenAI',price:'Incluido en ChatGPT Plus',access:'privada',desc:'Integrado en ChatGPT. Muy bueno con instrucciones complejas y generación de texto tipográfico.',mod:'texto · imagen',note:'',url:'https://openai.com/dall-e-3'},
-    {name:'Flux',maker:'Black Forest Labs',price:'Open source (Gratis)',access:'opensource',desc:'Nueva generación open source. Mayor coherencia semántica que Stable Diffusion. Estándar actual.',mod:'texto · imagen',note:'',url:'https://blackforestlabs.ai'},
-    {name:'Stable Diffusion',maker:'Stability AI',price:'Open source (Gratis)',access:'opensource',desc:'Base del ecosistema open source: ComfyUI, Automatic1111, LoRAs y Civitai.',mod:'texto · imagen',note:'',url:'https://stability.ai'},
-    {name:'Adobe Firefly',maker:'Adobe',price:'Incluido en Creative Cloud',access:'integrada',desc:'Integrado en Photoshop e Illustrator. Generative fill, text to vector. Seguro para uso comercial.',mod:'texto · imagen',note:'',url:'https://firefly.adobe.com'},
-    {name:'Ideogram',maker:'Ideogram',price:'Freemium',access:'privada',desc:'Especialmente bueno generando texto tipográfico dentro de imágenes.',mod:'texto · imagen',note:'',url:'https://ideogram.ai'},
+    {name:'Midjourney V7',maker:'Midjourney Inc.',price:'De pago (Desde $10/mes)',access:'privada',desc:'El estándar de calidad estética. Muy usado en diseño, concept art, moda y producción visual. V7 mejora coherencia y control de estilo.',mod:'texto · imagen',note:'',url:'https://www.midjourney.com'},
+    {name:'GPT Image 2',maker:'OpenAI',price:'Incluido en ChatGPT Plus',access:'privada',desc:'Integrado en ChatGPT. Líder en benchmarks generales 2026. Excelente comprensión de prompts complejos y renderizado de texto.',mod:'texto · imagen',note:'',url:'https://openai.com/chatgpt'},
+    {name:'Ideogram 4.0',maker:'Ideogram AI',price:'Freemium (desde $8/mes)',access:'privada',desc:'Líder en renderizado tipográfico dentro de imágenes. Score 0.97 en OCR. DiT 9.3B entrenado desde cero con control de layout via bounding boxes y paletas JSON. Open-weight disponible en Hugging Face.',mod:'texto · imagen',note:'Open-weight para uso no comercial.',url:'https://ideogram.ai'},
+    {name:'FLUX 2',maker:'Black Forest Labs',price:'Open source (Dev/Klein gratis)',access:'opensource',desc:'Familia de modelos DiT de hasta 32B parámetros. Líder en fotorrealismo, textura y coherencia semántica. Variantes: Max, Pro, Flex, Dev y Klein. FLUX Kontext permite edición contextual imagen-a-imagen.',mod:'texto · imagen',note:'Pro y Max solo vía API. Dev y Klein con pesos descargables.',url:'https://bfl.ai'},
+    {name:'Stable Diffusion 4',maker:'Stability AI',price:'Open source (Gratis)',access:'opensource',desc:'El ecosistema open source más grande: miles de LoRAs, checkpoints y fine-tunes en Civitai. Ideal para self-hosting, privacidad y alto volumen sin costo.',mod:'texto · imagen',note:'',url:'https://stability.ai'},
+    {name:'Adobe Firefly',maker:'Adobe',price:'Incluido en Creative Cloud',access:'integrada',desc:'Integrado en Photoshop e Illustrator. Generative fill, text to vector. El más seguro para uso comercial — entrenado solo con contenido licenciado.',mod:'texto · imagen',note:'',url:'https://firefly.adobe.com'},
   ]},
-  {id:'video',title:'Video | Generación',filterTag:'Video',input:'Texto, Imágenes, Ajustes de cámara',output:'Video HD con simulación física',tools:[
-    {name:'Runway Gen-3 Alpha',maker:'Runway',price:'De pago (Desde $15/mes)',access:'privada',desc:'El estándar de la industria audiovisual. Control fino sobre movimiento, cámara y estilo.',mod:'texto · imagen · video',note:'',url:'https://runwayml.com'},
-    {name:'Sora',maker:'OpenAI',price:'Incluido en ChatGPT Plus/Pro',access:'privada',desc:'Video hasta 20 segundos de alta calidad. Excelente coherencia temporal y simulación física.',mod:'texto · imagen · video',note:'',url:'https://openai.com/sora'},
-    {name:'Kling AI',maker:'Kuaishou',price:'Freemium',access:'privada',desc:'Alta calidad a menor costo. Muy bueno para movimientos realistas y expresiones faciales.',mod:'texto · imagen · video',note:'Empresa china. Disponible globalmente.',url:'https://kling.ai'},
-    {name:'Luma Dream Machine',maker:'Luma AI',price:'Freemium (120 gen/mes gratis)',access:'privada',desc:'Muy accesible. Bueno para movimientos de cámara realistas y para animar imágenes estáticas.',mod:'texto · imagen · video',note:'',url:'https://lumalabs.ai/dream-machine'},
-    {name:'Pika 2.0',maker:'Pika',price:'Freemium',access:'privada',desc:'Fácil de usar. Permite modificar partes específicas de un video (Pikaffects).',mod:'texto · imagen · video',note:'',url:'https://pika.art'},
-    {name:'Veo 3',maker:'Google DeepMind',price:'Incluido en Gemini Advanced',access:'privada',desc:'Modelo con generación de audio sincronizado. Alta calidad en fotorrealismo.',mod:'texto · imagen · video · audio',note:'Disponible inicialmente en EE.UU.',url:'https://deepmind.google/technologies/veo/'},
-    {name:'LTX Video',maker:'Lightricks',price:'Open source (Gratis)',access:'opensource',desc:'Modelo de video open source de alta calidad. Corre localmente.',mod:'texto · imagen · video',note:'',url:'https://huggingface.co/Lightricks/LTX-Video'},
+  {id:'video',title:'Video | Generación',filterTag:'Video',input:'Texto, Imágenes, Ajustes de cámara',output:'Video HD/4K con audio sincronizado',tools:[
+    {name:'Kling 3.0',maker:'Kuaishou',price:'Freemium (desde $0.35/clip)',access:'privada',desc:'Arquitectura MVL multimodal: texto, imagen, audio y video en un solo sistema. Audio nativo sincronizado en 5 idiomas. Native 4K. Motion Brush para control de trayectoria. AI Director genera hasta 6 tomas distintas en un solo pass.',mod:'texto · imagen · video · audio',note:'Empresa china. Disponible globalmente.',url:'https://kling.ai'},
+    {name:'Veo 3.1',maker:'Google DeepMind',price:'Incluido en Gemini Advanced',access:'privada',desc:'Modelo flagship de Google. Audio generativo nativo (voces, efectos, ambiente) sincronizado con el video. Alta calidad fotorrealista. Disponible en tres tiers: flagship, Fast y Light.',mod:'texto · imagen · video · audio',note:'',url:'https://deepmind.google/technologies/veo/'},
+    {name:'Sora 2',maker:'OpenAI',price:'Incluido en ChatGPT Plus/Pro',access:'privada',desc:'Video hasta 20 segundos de alta calidad. Excelente coherencia temporal y simulación física realista.',mod:'texto · imagen · video',note:'',url:'https://openai.com/sora'},
+    {name:'Seedance 2.0',maker:'ByteDance',price:'Freemium',access:'privada',desc:'Acepta hasta 9 imágenes, 3 videos y 3 archivos de audio como referencia simultánea. Alta consistencia de personajes. Fuerte en fotorrealismo y contenido de producto.',mod:'texto · imagen · video · audio',note:'Empresa china. Disponible globalmente.',url:'https://www.capcut.com'},
+    {name:'Runway Gen-4',maker:'Runway',price:'De pago (Desde $15/mes)',access:'privada',desc:'Estándar de la industria audiovisual. Control fino sobre movimiento, cámara y estilo. Muy usado en producción profesional.',mod:'texto · imagen · video',note:'',url:'https://runwayml.com'},
+    {name:'Luma Ray 2',maker:'Luma AI',price:'Freemium',access:'privada',desc:'Bueno para movimientos de cámara realistas y para animar imágenes estáticas con física creíble.',mod:'texto · imagen · video',note:'',url:'https://lumalabs.ai/ray'},
+    {name:'Pika 2.2',maker:'Pika',price:'Freemium',access:'privada',desc:'Fácil de usar. Permite modificar partes específicas de un video. Pikaffects para transformaciones creativas de escena.',mod:'texto · imagen · video',note:'',url:'https://pika.art'},
+    {name:'LTX Video',maker:'Lightricks',price:'Open source (Gratis)',access:'opensource',desc:'Modelo de video open source de alta calidad. Corre localmente. Ideal para integrar en pipelines propios sin costo de API.',mod:'texto · imagen · video',note:'',url:'https://huggingface.co/Lightricks/LTX-Video'},
+    {name:'Wan 2.1',maker:'Alibaba',price:'Open source (Gratis)',access:'opensource',desc:'Modelo de video open source con pesos descargables. Competitivo en calidad, con precios de API entre los más bajos del mercado.',mod:'texto · imagen · video',note:'Empresa china.',url:'https://huggingface.co/Wan-AI'},
   ]},
   {id:'audio',title:'Audio | Voz y música',filterTag:'Audio',input:'Texto, Voz de referencia, Melodías',output:'Voz sintetizada, Música, Transcripciones',tools:[
     {name:'ElevenLabs',maker:'ElevenLabs',price:'Freemium (Desde $5/mes)',access:'privada',desc:'El estándar en síntesis y clonación de voz. TTS hiperrealista, clonación con pocos segundos de audio.',mod:'texto · audio',note:'',url:'https://elevenlabs.io'},
